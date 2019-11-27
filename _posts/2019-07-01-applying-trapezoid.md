@@ -30,7 +30,7 @@ One naive approach to this problem is to try to approximate $\int_{a}^{b} K(x,t)
 
 $$\int_{a}^{b} f(x)dx \approx \frac{h}{2} (f(x_0) + 2\sum_{i=0}^{n-1}f(x_i) + f(x_n))$$
 
-where $x_i \in [a,b]$ for $i = 0, 1, ..., n$. When we apply the composite trapezoidal rule to our integral, we get 
+where $x_i \in [a,b]$ for $i = 0, 1, \dots, n$. When we apply the composite trapezoidal rule to our integral, we get
 
 $$\int_{a}^{b}K(x, t)u(t)dt = \frac{h}{2}(K(x, x_0)u(x_0) + 2\sum_{i=1}^{n-1}K(x, x_i)u(x_i) + K(x, x_n)u(x_n))$$
 
@@ -39,7 +39,7 @@ By substituting this information into our original equation, we can define $u(x)
 
 $$u(x) = f(x) + \frac{h}{2}(K(x, x_0)u(x_0) + 2\sum_{i=1}^{n-1}K(x, x_i)u(x_i) + K(x, x_n)u(x_n))$$
 
-When we evaluate $f(x)$ at all the evenly spaced nodes $x_0, x_1, ... , x_n \in [a,b]$, we can construct the system of equations:
+When we evaluate $f(x)$ at all the evenly spaced nodes $x_0, x_1, \dots , x_n \in [a,b]$, we can construct the system of equations:
 
 
 $$u(x_0) = f(x_0) + \frac{h}{2}(K(x_0, x_0)u(x_0) + 2\sum_{i=1}^{n-1}K(x_0, x_i)u(x_i) + K(x_0, x_n)u(x_n))$$
@@ -50,13 +50,13 @@ $$\vdots$$
 
 $$u(x_n) = f(x_n) + \frac{h}{2}(K(x_n, x_0)u(x_0) + 2\sum_{i=1}^{n-1}K(x_n, x_i)u(x_i) + K(x_n, x_n)u(x_n))$$
 
-Solving this system yields the values for $u(x_0), u(x_1),...,u(x_n)$. The matrix form of this system looks like
+Solving this system yields the values for $u(x_0), u(x_1),\dots,u(x_n)$. The matrix form of this system looks like
 
 $$\begin{pmatrix}I_{n+1} -
 \frac{h}{2}\begin{bmatrix}
-K(x_0, x_0) & 2K(x_0, x_1) & \cdots & K(x_0, x_n)\\\ 
-K(x_1, x_0) & 2K(x_1, x_1) & \cdots & K(x_1, x_n)\\\ 
-\vdots & \vdots & \cdots & \vdots\\\ 
+K(x_0, x_0) & 2K(x_0, x_1) & \cdots & K(x_0, x_n)\\\
+K(x_1, x_0) & 2K(x_1, x_1) & \cdots & K(x_1, x_n)\\\
+\vdots & \vdots & \cdots & \vdots\\\
 K(x_n, x_0) & 2K(x_n, x_1) & \cdots & K(x_n, x_n)
 \end{bmatrix}\end{pmatrix}
 \begin{bmatrix}u(x_0)\\\ u(x_1)\\\ \vdots\\\ u(x_n)\end{bmatrix}
@@ -69,13 +69,13 @@ Let's try this on an example problem. Let $u(x) = e^x-1+\int_{0}^{1}tu(t)dt$ whe
 
 $$\begin{pmatrix}I_5 -
 \frac{1}{8}\begin{bmatrix}
-0 & 0.5 & 1 & 1.5 & 1\\\ 
-0 & 0.5 & 1 & 1.5 & 1\\\ 
-0 & 0.5 & 1 & 1.5 & 1\\\ 
-0 & 0.5 & 1 & 1.5 & 1\\\ 
+0 & 0.5 & 1 & 1.5 & 1\\\
+0 & 0.5 & 1 & 1.5 & 1\\\
+0 & 0.5 & 1 & 1.5 & 1\\\
+0 & 0.5 & 1 & 1.5 & 1\\\
 0 & 0.5 & 1 & 1.5 & 1
 \end{bmatrix}\end{pmatrix}
-\begin{bmatrix}u(0)\\\ u(0.25)\\\ u(0.5)\\\ u(0.75)\\\ u(1)\end{bmatrix} = 
+\begin{bmatrix}u(0)\\\ u(0.25)\\\ u(0.5)\\\ u(0.75)\\\ u(1)\end{bmatrix} =
 \begin{bmatrix}0\\\ e^{0.25}-1\\\ e^{0.5}-1\\\ e^{0.75}-1\\\ e-1\end{bmatrix}$$
 
 MATLAB spits out
