@@ -1,0 +1,16 @@
+#body {
+	clear: both;
+	width: 65%;
+	margin: auto
+}
+
+#date {
+	font-size: medium;
+	color: LightSlateGrey;
+	display: block;
+}
+
+.center {
+	margin: auto; 
+	display: block;
+}

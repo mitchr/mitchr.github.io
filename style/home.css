@@ -1,0 +1,31 @@
+hr {
+	clear: both;
+	color: LightSlateGrey;
+}
+
+nav {
+	overflow: hidden;
+	float: right;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	float: left;
+	font-size: x-large;
+	padding: 8px;
+}
+
+#list {
+	clear: both;
+	width: 65%;
+	margin: auto;
+	font-size: xx-large;
+	color: LightSlateGrey;
+}
+
+#list ul {
+	list-style-type: none;
+}
