@@ -35,7 +35,7 @@ Given \(f(x)\) and \(K(x,t)\), can we find the solution for the unknown function
 
 One naive approach to this problem is to try to approximate \(\int_{a}^{b} K(x,t)u(t) dt\). We will solve it using the composite trapezoidal rule. Assuming a uniform grid with \(n\) equal partitions and step-size \(h=\frac{b-a}{n}\), the composite trapezoidal rule is as stated:
 
-\[\int_{a}^{b} f(x)dx \approx \frac{h}{2}\left(f(x_0) + 2\sum_{i=0}^{n-1}f(x_i) + f(x_n)\right)\]
+\[\int_{a}^{b} f(x)dx \approx \frac{h}{2}\left(f(x_0) + 2\sum_{i=1}^{n-1}f(x_i) + f(x_n)\right)\]
 
 where \(x_i \in [a,b]\) for \(i = 0, 1, \dots, n\). When we apply the composite trapezoidal rule to our integral, we get
 
