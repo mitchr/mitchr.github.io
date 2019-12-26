@@ -1,6 +1,8 @@
 hr {
 	clear: both;
 	color: LightSlateGrey;
+	width: 90%;
+	float: right;
 }
 
 nav {
@@ -13,17 +15,28 @@ nav ul {
 }
 
 nav ul li {
+	background-color: LightGrey;
 	float: left;
-	font-size: x-large;
+	font-size: 26px;
 	padding: 8px;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: DarkSlateGrey;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+	color: LightSlateGrey;
 }
 
 #list {
 	clear: both;
-	width: 65%;
+	/*background-color: LightGrey;*/
+	width: 80%;
 	margin: auto;
-	font-size: xx-large;
-	color: LightSlateGrey;
+	font-size: 32px;
 }
 
 #list ul {
