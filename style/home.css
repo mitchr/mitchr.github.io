@@ -1,8 +1,11 @@
 #navbar-divider {
 	clear: both;
-	color: LightSlateGrey;
 	width: 90%;
 	float: right;
+}
+
+hr {
+	border: 1px solid LightSlateGrey;
 }
 
 nav {
