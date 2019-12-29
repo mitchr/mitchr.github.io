@@ -5,6 +5,7 @@
 }
 
 hr {
+	clear: both;
 	border: 1px solid LightSlateGrey;
 }
 
