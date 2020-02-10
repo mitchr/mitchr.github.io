@@ -3,12 +3,13 @@
 <head>
 	<title>Deriving the Geodesics of a Torus</title>
 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+	<script src="../js/katexConfig.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="../style/post.css">
 	<link rel="stylesheet" type="text/css" href="../style/home.css">
-
-	<script src="../js/mathjaxConfig.js"></script>
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 </head>
 
@@ -73,10 +74,10 @@ $$\gamma(t)'' \cdot F_\phi=\gamma(t)'' \cdot F_\theta=0.$$
 We can apply the chain rule to get
 
 $$
-	\begin{gather}
+	\begin{gathered}
 		\gamma(t)' = F_\phi\phi'+F_\theta\theta' \\
 		\gamma(t)''=F_{\phi\phi}(\phi')^2+F_{\phi\theta}\theta'\phi'+F_\phi\phi''+F_{\theta\theta}(\theta')^2+F_{\theta\phi}\phi'\theta'+F_\theta\theta''.
-	\end{gather}
+	\end{gathered}
 $$
 
 Because of the symmetry of second derivatives, this further simplifies to
@@ -85,41 +86,41 @@ $$\gamma(t)''=F_{\phi\phi}(\phi')^2+2F_{\phi\theta}\theta'\phi'+F_\phi\phi''+F_{
 
 Therefore we have to find the solutions to
 $$
-	\begin{align}
+	\begin{aligned}
 		\gamma(t)'' \cdot F_\phi &= \left(F_{\phi\phi}(\phi')^2+2F_{\phi\theta}\theta'\phi'+F_\phi\phi''+F_{\theta\theta}(\theta')^2+F_\theta\theta''\right) \cdot F_\phi = 0 \\
 		\gamma(t)'' \cdot F_\theta &= \left(F_{\phi\phi}(\phi')^2+2F_{\phi\theta}\theta'\phi'+F_\phi\phi''+F_{\theta\theta}(\theta')^2+F_\theta\theta''\right) \cdot F_\theta = 0
-	\end{align}
+	\end{aligned}
 $$
 which is not obviously simple. The algebra needed to arrive at a useful simplification may seem utterly annoying, but there are substitutions that can be made that make some of the algebra easier. If you want to read more about these substitutions, you should check out Chapter 8 on geodesics in <i>Elementary Differential Geometry</i> <sup><a href="#fn1" id="ref1">1</a></sup> by Pressley. I'm going to assume that we've done all the necessary algebra and sweep all those calculations under the rug so we can move on.
 
 <br><br>
 The solutions to the above system are given by another system:
 $$
-	\begin{gather}
+	\begin{gathered}
 	    \theta''=\frac{2r\sin(\phi)}{R+r\cos(\phi)}\phi'\theta' \\
 	    \phi'' = -\frac{1}{r}\sin(\phi)(R+r\cos(\phi))(\theta')^2.
-	\end{gather}
+	\end{gathered}
 $$
 
 Trying to solve this sytem by hand is difficult because not only are they nonlinear, they are coupled. This is a job for a numerical solver.
 
 We can transform this system of two second order equations into a system of four first order equations so that
 $$
-	\begin{gather*}
+	\begin{gathered}
 	    z_1=\theta \\
 	    z_2=\theta' \\
 	    z_3=\phi \\
 	    z_4=\phi'
-	\end{gather*}
+	\end{gathered}
 $$
 and
 $$
-	\begin{align*}
+	\begin{aligned}
 	    z_1' &= z_2 \\
 	    z_2' &= \frac{2r\sin(z_3)}{R+r\cos(z_3)}z_2z_4 \\
 	    z_3' &= z_4 \\
 	    z_4' &= -\frac{1}{r}\sin(z_3)(R+r\cos(z_3))z_2^2
-	\end{align*}
+	\end{aligned}
 $$
 
 Using MATLAB's ode45, we can generate geodesics by providing the initial conditions for $\theta, \theta', \phi,$ and $\theta'$.

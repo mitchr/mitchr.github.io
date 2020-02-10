@@ -3,12 +3,14 @@
 <head>
 	<title>Solving BVP Associated with Toroidal Geodesics</title>
 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+	<script src="../js/katexConfig.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="../style/post.css">
 	<link rel="stylesheet" type="text/css" href="../style/home.css">
 
-	<script src="../js/mathjaxConfig.js"></script>
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 
 <nav>
@@ -31,16 +33,16 @@
 In the <a href="12-28-19.html">last post</a> we found that the geodesics of a torus $\mathcal{T}$ were given by the following system of ODEs:
 
 $$
-\begin{gather}
+\begin{gathered}
 	\theta''=\frac{2r\sin(\phi)}{R+r\cos(\phi)}\phi'\theta' \\
 	\phi'' = -\frac{1}{r}\sin(\phi)(R+r\cos(\phi))(\theta')^2.
-\end{gather}
+\end{gathered}
 $$
 
 We saw that we were able to numerically solve this system if we gave an initial position and velocity for $\theta, \phi$. What we want to do now is find the geodesic between two specific points, which corresponds with solving this BVP:
 
 $$
-\begin{align}
+\begin{aligned}
 	\text{ODEs} \qquad
 		&\left\{\begin{aligned}
 			\theta''&=\frac{2r\sin(\phi)}{R+r\cos(\phi)}\phi'\theta' \\
@@ -52,24 +54,24 @@ $$
 			\theta(a)&=\alpha_0 & \theta(b)&=\beta_0 \\
 			\phi(a)&=\alpha_1 & \phi(b)&=\beta_1
 		\end{aligned}\right.
-\end{align}
+\end{aligned}
 $$
 
 Rewriting this as a first-order system, we get
 
 $$
-\begin{align}
+\begin{aligned}
 	z_1&=\theta & &\longrightarrow z_1' = z_2 \\
 	z_2&=\theta' & &\longrightarrow z_2' = \frac{2r\sin(z_3)}{R+r\cos(z_3)}z_2z_4 \\
 	z_3&=\phi & &\longrightarrow z_3' = z_4 \\
 	z_4&=\phi' & &\longrightarrow z_4' = -\frac{1}{r}\sin(z_3)(R+r\cos(z_3))z_2^2
-\end{align}
+\end{aligned}
 $$
 
 which can be written as the initial value problem:
 
 $$
-\begin{align}
+\begin{aligned}
 	\text{ODEs} \qquad
 		&\left\{\begin{aligned}
 		z_1' &= z_2 \\
@@ -85,7 +87,7 @@ $$
 			z_3(a)&=\alpha_1 \\
 			z_4(a)&=u_2
 		\end{aligned}\right.
-\end{align}
+\end{aligned}
 $$
 
 Solving this is slightly more difficult than an ordinary IVP, because we need 4 initial conditions, but we are only given two. We need to either find or guess $\theta'(a)$ and $\phi'(a)$. The usual elementary numerical methods that are used to solve second-order BVPs are the shooting method, and finite difference approximations. Both of these methods typically need an initial position <i>and</i> an initial slope, so whichever one of these methods we choose, we will still need some way of approximating $\theta'(a)$ and $\phi'(a)$, though we'll be approaching this using the shooting method.
@@ -95,28 +97,28 @@ Solving this is slightly more difficult than an ordinary IVP, because we need 4 
 Let's let $z_2(a)=u_1$ and $z_4(a)=u_2$ (remember that in our formulation above, $z_2(t)=\theta'(t)$, and $z_4(t)=\phi'(t)$). We can think that whatever values we choose for $u_1,u_2$ will determine the angle that we will "shoot" from, which will then determine our final position. We want to choose $u_1$ and $u_2$ such that $z_1(b)=\beta_0$ and $z_3(b)=\beta_1$. Therefore $z_1(b)$ and $z_3(b)$ are dependent on $u_1$ and $u_2$, which we can express as
 
 $$
-	\begin{align}
+	\begin{aligned}
 		z_1(b) &= g_1(u_1, u_2) \\
 		z_3(b) &= g_2(u_1, u_2).
-	\end{align}
+	\end{aligned}
 $$
 
 We should choose $u_1, u_2$ such that
 
 $$
-	\begin{align}
+	\begin{aligned}
 		g_1(u_1, u_2) &= \beta_0 \\
 		g_2(u_1, u_2) &= \beta_1
-	\end{align}
+	\end{aligned}
 $$
 
 or written another way,
 
 $$
-	\begin{align}
+	\begin{aligned}
 		g_1(u_1, u_2) - \beta_0 &= 0 \\
 		g_2(u_1, u_2) - \beta_1 &= 0,
-	\end{align}
+	\end{aligned}
 $$
 
 which is now a root finding problem! We don't actually know analytic forms for $g_1$ or $g_2$, but that's okay because we'll be approximating them.
@@ -138,7 +140,7 @@ We then solve $F(x)=0$ using Newton-Raphson, which gives us approximate values $
 Let's look at some examples. We want to find the geodesic between points $(0,0)$ and $(0,\pi)$. I have assumed that $r=1$ and $R=2$, and also that $a=0,b=1$. This assumption of $t\in[0,1]$ isn't actually based on any intuition, which comes back to bite us later. For now, let's just assume that this is a sufficient enough span for $t$.
 
 $$
-\begin{align}
+\begin{aligned}
 	\text{ODEs} \qquad
 		&\left\{\begin{aligned}
 			\theta''&=\frac{2\sin(\phi)}{2+\cos(\phi)}\phi'\theta' \\
@@ -150,7 +152,7 @@ $$
 			\theta(0)&=0 & \theta(1)&=\pi \\
 			\phi(0)&=0 & \phi(1)&=0
 		\end{aligned}\right.
-\end{align}
+\end{aligned}
 $$
 
 Let's think about what our solution should look like. We know $\theta$ should start at $0$ and end at $\pi$, so it should rotate along the upper half of the torus. And because $\phi$ starts and ends at $0$, it should remain constant. Below is an image showing the solution, which matches our intuition. The initial approximations for the slopes ended up being $\theta'(a) \approx 3.141592653589793$ and $\phi'(a) \approx 0$.
@@ -165,7 +167,7 @@ Let's think about what our solution should look like. We know $\theta$ should st
 Here's another cool one that is a solution to
 
 $$
-\begin{align}
+\begin{aligned}
 	\text{ODEs} \qquad
 		&\left\{\begin{aligned}
 			\theta''&=\frac{2\sin(\phi)}{2+\cos(\phi)}\phi'\theta' \\
@@ -177,7 +179,7 @@ $$
 			\theta(0)&=0 & \theta(1)&=\pi \\
 			\phi(0)&=\frac{\pi}{2} & \phi(1)&=\frac{3\pi}{2}
 		\end{aligned}\right.
-\end{align}
+\end{aligned}
 $$
 
 <div class="img-container">
@@ -198,7 +200,7 @@ $$
 I ran into a problem when trying to solve this particular formulation:
 
 $$
-\begin{align}
+\begin{aligned}
 	\text{ODEs} \qquad
 		&\left\{\begin{aligned}
 			\theta''&=\frac{2\sin(\phi)}{2+\cos(\phi)}\phi'\theta' \\
@@ -210,7 +212,7 @@ $$
 			\theta(0)&=0 & \theta(1)&=\pi \\
 			\phi(0)&=\frac{\pi}{2} & \phi(1)&=\frac{\pi}{2}
 		\end{aligned}\right.
-\end{align}
+\end{aligned}
 $$
 
 When I first tried to solve using the method above, it failed. Initially I thought it was because my Newton-Raphson implementation would stop after a maximum of $100$ iterations. I tried to mitigate this problem by raising the number of max iterations to $250$ to see if it would then converge, but it still failed. Then I thought that the initial guess of of $[\pi, 0]$ for $[u_1,u_2]$ (which was obtained from the secant approximation discussed above) was causing the slow convergence. So I attempted the algorithm with some more random initial values like $[1,1]$, but it still did not converge.
