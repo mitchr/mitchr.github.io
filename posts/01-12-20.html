@@ -155,10 +155,12 @@ $$
 
 Let's think about what our solution should look like. We know $\theta$ should start at $0$ and end at $\pi$, so it should rotate along the upper half of the torus. And because $\phi$ starts and ends at $0$, it should remain constant. Below is an image showing the solution, which matches our intuition. The initial approximations for the slopes ended up being $\theta'(a) \approx 3.141592653589793$ and $\phi'(a) \approx 0$.
 
-<figure style="inline-block">
-	<img src="../img/torus_geodSimple.png" class="center" style="height:200px; width=auto">
-	<figcaption>Top-down rotated view of solution bolded in orange.</figcaption>
-</figure>
+<div class="img-container">
+	<figure>
+		<img src="../img/torus_geodSimple.png" style="flex:100%; width:100%">
+		<figcaption>Top-down rotated view of solution bolded in orange.</figcaption>
+	</figure>
+</div>
 
 Here's another cool one that is a solution to
 
@@ -217,7 +219,11 @@ When I first tried to solve using the method above, it failed. Initially I thoug
 
 The solution to this convergence problem was that it was unable to find a geodesic in the interval $[a,b]$. I had been using $a=0,b=1$ for all of my testing and the method converged for all starting points that I had tried. But once I tried $\left(0, \frac{\pi}{2}\right)$ and $\left(\pi, \frac{\pi}{2}\right)$, it failed. I suppose this is because as $t$ spanned this interval, it didn't have enough "length" to reach the terminal point $\left(\pi, \frac{\pi}{2}\right)$. I'm not sure what causes the method to fail, or if there is some analytical way to determine if the method is going to fail given the initial point, the terminal point, and the span of $t$. Either way, changing the interval of $t$ from $[0,1]$ to $[0,5]$ gave quick convergence.
 
-<img src="../img/torus_strangeB.png" class="center" style="height:200px; width=auto">
+<div class="img-container">
+	<figure>
+		<img src="../img/torus_strangeB.png" style="flex:100%; width:100%">
+	</figure>
+</div>
 
 I also found that $[0,4.5]$ worked, so there must be some tolerance in the choice for the span of $t$, but I'm going to have to explore this issue further. Allegedly these types of unknown boundary value problems or free boundary value problems, where the value of $b$ is unknown, come up a lot in engineering. There is a way to solve these problems with something called the reverse shooting method, but I've only seen this method employed for single ODEs, not coupled ones like we're dealing with. Essentially the divergence could be caused by any combination of these factors:
 <ol>

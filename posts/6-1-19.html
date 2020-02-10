@@ -113,11 +113,19 @@ MATLAB spits out
 
 Let's look at a plot of our approximation versus the exact solution:
 
-<img src="../img/trapezoid4.png" class="center" style="width:65%; height:auto">
+<div class="img-container">
+	<figure>
+		<img src="../img/trapezoid4.png" class="center" style="flex:100%; width:100%">
+	</figure>
+</div>
 
 It looks okay. We can see that there is some error when we only use $4$ intervals. Let's see if we can do better when $n=8$:
 
-<img src="../img/trapezoid8.png" class="center" style="width:65%; height:auto">
+<div class="img-container">
+	<figure>
+		<img src="../img/trapezoid8.png" class="center" style="flex:100%; width:100%">
+	</figure>
+</div>
 
 The error is much smaller, which should make sense because the composite trapezoidal rule has error of order $O(h^3)$. So when we double our steps-size, our error is $\frac{1}{8}$ed.
 
