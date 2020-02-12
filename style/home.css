@@ -1,38 +1,6 @@
-#navbar-divider {
-	clear: both;
-	width: 90%;
-	float: right;
-}
-
 hr {
 	clear: both;
 	border: 1px solid LightSlateGrey;
-}
-
-nav {
-	overflow: hidden;
-	float: right;
-}
-
-nav ul {
-	list-style-type: none;
-}
-
-nav ul li {
-	background-color: LightGrey;
-	float: left;
-	font-size: 26px;
-	padding: 8px;
-}
-
-a:link, a:visited {
-	text-decoration: none;
-	color: DarkSlateGrey;
-}
-
-a:hover, a:active {
-	text-decoration: underline;
-	color: LightSlateGrey;
 }
 
 #list {
