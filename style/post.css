@@ -1,7 +1,12 @@
 #body {
 	clear: both;
+	font-size: 1.4vw;
 	width: 80%;
 	margin: auto
+}
+
+h1 {
+	color: DarkSlateGrey;
 }
 
 #date {
