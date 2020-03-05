@@ -4,6 +4,11 @@
 	float: right;
 }
 
+hr {
+	clear: both;
+	border: 1px solid LightSlateGrey;
+}
+
 nav {
 	overflow: hidden;
 	float: right;
