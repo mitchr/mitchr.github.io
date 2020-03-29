@@ -5,6 +5,11 @@ body {
 	margin: auto
 }
 
+.katex-display {
+    overflow-x: auto;
+		overflow-y:hidden;
+}
+
 h1 {
 	color: DarkSlateGrey;
 }
