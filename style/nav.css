@@ -1,17 +1,13 @@
-#navbar-divider {
-	clear: both;
-	width: 90%;
-	float: right;
-}
-
 hr {
 	clear: both;
 	border: 1px solid LightSlateGrey;
+	width: 100%;
 }
 
 nav {
 	overflow: hidden;
 	float: right;
+	margin-bottom: 10px;
 }
 
 nav ul {
