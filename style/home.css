@@ -1,8 +1,8 @@
-#list {
+body {
 	clear: both;
-	width: 80%;
-	margin: auto;
-	font-size: 2.8vw;
+	font-size: 1.2em;
+	width: 90%;
+	margin: auto
 }
 
 #list ul {
@@ -10,5 +10,5 @@
 }
 
 #list li {
-	margin-top: 15px;
+	margin-top: 20px;
 }

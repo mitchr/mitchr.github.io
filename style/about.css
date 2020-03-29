@@ -1,7 +1,8 @@
-#body {
+body {
 	clear: both;
-	width: 80%;
-	margin: auto;
+	font-size: 1.2em;
+	width: 90%;
+	margin: auto
 }
 
 h1, h2 {
