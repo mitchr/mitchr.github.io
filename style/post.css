@@ -10,7 +10,7 @@ body {
 		overflow-y:hidden;
 }
 
-h1 {
+h1, h2 {
 	color: DarkSlateGrey;
 }
 
@@ -29,6 +29,14 @@ figcaption {
 .center {
 	margin: auto;
 	display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+table td {
+  border: 2px solid DarkSlateGrey;
 }
 
 .img-container {
