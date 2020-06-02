@@ -1,12 +1,12 @@
 let theta = linspace(0, 2*Math.PI);
 let phi = linspace(0, 2*Math.PI);
-let [T, P] = meshgrid(theta, phi);
+let [T, P] = matrix.meshgrid(theta, phi);
 
 function F(theta, phi) {
-	x = matrix.elementWiseMult(matrix.cos(theta), (scalarAdd(matrix.cos(phi), 2)));
-	y = matrix.elementWiseMult(matrix.sin(theta), (scalarAdd(matrix.cos(phi), 2)));
+	x = matrix.eWMult(matrix.cos(theta), (matrix.sAdd(matrix.cos(phi), 2)));
+	y = matrix.eWMult(matrix.sin(theta), (matrix.sAdd(matrix.cos(phi), 2)));
 	z = matrix.sin(phi);
-	return [x, y, z]
+	return [x.data, y.data, z.data]
 }
 
 function geodDE(t, z) {
@@ -15,10 +15,10 @@ function geodDE(t, z) {
 	dzdt[1] = 2*Math.sin(z[2])/(2+Math.cos(z[2]))*z[1]*z[3];
 	dzdt[2] = z[3];
 	dzdt[3] = -Math.sin(z[2])*(2+Math.cos(z[2]))*(z[1]**2);
-	return dzdt
+	return new matrix(1, 4, dzdt)
 }
 
-let torusSurf = {
+torusSurf = {
 	type: 'surface',
 	// don't show contour lines on hover
 	contours: {
@@ -31,9 +31,9 @@ let torusSurf = {
 	showscale: false,
 	hoverinfo: 'skip',
 
-	x: matrix.elementWiseMult(matrix.cos(T), (matrix.scalarAdd(matrix.cos(P), 2))),
-	y: matrix.elementWiseMult(matrix.sin(T), (matrix.scalarAdd(matrix.cos(P), 2))),
-	z: matrix.sin(P),
+	x: matrix.eWMult(matrix.cos(T), (matrix.sAdd(matrix.cos(P), 2))).to2D(),
+	y: matrix.eWMult(matrix.sin(T), (matrix.sAdd(matrix.cos(P), 2))).to2D(),
+	z: matrix.sin(P).to2D(),
 }
 
 let defLayout = {

@@ -19,7 +19,7 @@ onmessage = function(msg) {
 			let {tSpan, y0, hmax, TOL} = data[i];
 
 			[t, y] = rkf45(geodDE, tSpan, y0, hmax, TOL)
-			geod = F(matrix.column(y, 0), matrix.column(y, 2));
+			geod = F(y.col(0), y.col(2));
 
 			var plotData = {
 				type: 'scatter3d',

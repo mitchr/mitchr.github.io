@@ -24,32 +24,41 @@ function rkf45(f, tSpan, y0, hmax, TOL) {
 	// start at the beginning of the interval
 	let t = tSpan[0];
 	let allT = [t];
-	let y = [y0];
+
+	// if y0 is already a matrix, then that's fine
+	// otherwise, create a new matrix object
+	let y = new matrix(1, 1);
+	if (y0 instanceof matrix) {
+		y.appendCol(y0)
+	} else {
+		// need to clone y0 here to prevent modification
+		y = new matrix(1, y0.length, y0.slice(0));
+	}
 	let h = hmax;
 
 	// keep integrating until we reach the end of the interval
 	while(t < tSpan[1]) {
-		let k1 = scalarMult(f(t, y[y.length-1]), h);
-		let k2 = scalarMult(f(t + h/4, arrAdd(y[y.length-1], scalarMult(k1, 1/4))), h);
-		let k3 = scalarMult(f(t + 3*h/8, arrAdd(y[y.length-1], scalarMult(k1, 3/32), scalarMult(k2, 9/32))), h);
-		let k4 = scalarMult(f(t + 12*h/13, arrAdd(y[y.length-1], scalarMult(k1, 1932/2197), scalarMult(k2, -7200/2197), scalarMult(k3, 7296/2197))), h);
-		let k5 = scalarMult(f(t + h, arrAdd(y[y.length-1], scalarMult(k1, 439/216), scalarMult(k2, -8), scalarMult(k3, 3680/513), scalarMult(k4, -845/4104))), h);
-		let k6 = scalarMult(f(t + h/2, arrAdd(y[y.length-1], scalarMult(k1, -8/27), scalarMult(k2, 2), scalarMult(k3, -3544/2565), scalarMult(k4, 1859/4104), scalarMult(k5, -11/40))), h)
+		let k1 = matrix.sMult(f(t, y.row(y.n-1).data), h);
+		let k2 = matrix.sMult(f(t + h/4, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1/4)).data), h);
+		let k3 = matrix.sMult(f(t + 3*h/8, matrix.add(y.row(y.n-1), matrix.sMult(k1, 3/32), matrix.sMult(k2, 9/32)).data), h);
+		let k4 = matrix.sMult(f(t + 12*h/13, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1932/2197), matrix.sMult(k2, -7200/2197), matrix.sMult(k3, 7296/2197)).data), h);
+		let k5 = matrix.sMult(f(t + h, matrix.add(y.row(y.n-1), matrix.sMult(k1, 439/216), matrix.sMult(k2, -8), matrix.sMult(k3, 3680/513), matrix.sMult(k4, -845/4104)).data), h);
+		let k6 = matrix.sMult(f(t + h/2, matrix.add(y.row(y.n-1), matrix.sMult(k1, -8/27), matrix.sMult(k2, 2), matrix.sMult(k3, -3544/2565), matrix.sMult(k4, 1859/4104), matrix.sMult(k5, -11/40)).data), h)
 
 		// compute rk4 and rk5 for each vector
-		let rk4 = arrAdd(y[y.length-1], scalarMult(k1, 25/216), scalarMult(k3, 1408/2565), scalarMult(k4, 2197/4104), scalarMult(k5, -1/5));
-		let rk5 = arrAdd(y[y.length-1], scalarMult(k1, 16/135), scalarMult(k3, 6656/12825), scalarMult(k4, 28561/56430), scalarMult(k5,-9/50), scalarMult(k6, 2/55));
+		let rk4 = matrix.add(y.row(y.n-1), matrix.sMult(k1, 25/216), matrix.sMult(k3, 1408/2565), matrix.sMult(k4, 2197/4104), matrix.sMult(k5, -1/5));
+		let rk5 = matrix.add(y.row(y.n-1), matrix.sMult(k1, 16/135), matrix.sMult(k3, 6656/12825), matrix.sMult(k4, 28561/56430), matrix.sMult(k5,-9/50), matrix.sMult(k6, 2/55));
 
 		// determine maximum error of all rk5-rk4
-		let diff = arrAdd(rk5, scalarMult(rk4, -1));
-		let diffmax = diff.reduce((a,b) => {
+		diff = matrix.add(rk5, matrix.sMult(rk4, -1));
+		let diffmax = diff.data.reduce((a,b) => {
 			return Math.max(a, b);
 		})
 
 		let R = Math.abs(diffmax)/h;
 		// accept rk4 approx
 		if (R <= TOL) {
-			y.push(rk4);
+			y.appendRow(rk4);
 			t = t + h;
 			allT.push(t);
 		}
@@ -69,12 +78,12 @@ function rkf45(f, tSpan, y0, hmax, TOL) {
 
 		// we went over the interval, we're done
 		if (t >= tSpan[1]) {
-			return [allT, y]
+			return [new matrix(1, allT.length, allT), y]
 		} else if (t + h > tSpan[1]) {
 			h = tSpan[1] - t;
 		}
 	}
-	return [allT, y];
+	return [new matrix(1, allT.length, allT), y];
 }
 
 // uncomment to test compliance with Burden and Faires algorithm
