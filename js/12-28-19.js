@@ -26,7 +26,7 @@ workers[0].postMessage({
 workers[1].postMessage({
 	divID: "tpGeod",
 	data: [{
-		tSpan: [0, 10],
+		tSpan: [0, 7],
 		y0: [0, 0, 0, 1],
 		hmax: 0.25,
 		TOL: 0.1,
