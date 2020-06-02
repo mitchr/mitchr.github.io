@@ -1,3 +1,20 @@
+// some defaults for Plotly
+let defLayout = {
+	// title: "a sphere",
+	autosize: true,
+	// remove drop pointer on hover
+	scene: {
+		xaxis: {showspikes: false},
+		yaxis: {showspikes: false},
+		zaxis: {showspikes: false},
+	}
+};
+
+let defConfig = {
+	displayModeBar: false,
+	responsive: true,
+};
+
 // create pool of workers
 let workers = [];
 for (var i = 0; i < 3; i++) {
