@@ -15,7 +15,7 @@ function geodDE(t, z) {
 	dzdt[1] = 2*Math.sin(z[2])/(2+Math.cos(z[2]))*z[1]*z[3];
 	dzdt[2] = z[3];
 	dzdt[3] = -Math.sin(z[2])*(2+Math.cos(z[2]))*(z[1]**2);
-	return new matrix(1, 4, dzdt)
+	return new matrix(dzdt)
 }
 
 torusSurf = {

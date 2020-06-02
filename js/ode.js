@@ -32,7 +32,7 @@ function rkf45(f, tSpan, y0, hmax, TOL) {
 		y.appendCol(y0)
 	} else {
 		// need to clone y0 here to prevent modification
-		y = new matrix(1, y0.length, y0.slice(0));
+		y = new matrix(y0.slice(0));
 	}
 	let h = hmax;
 
@@ -78,12 +78,12 @@ function rkf45(f, tSpan, y0, hmax, TOL) {
 
 		// we went over the interval, we're done
 		if (t >= tSpan[1]) {
-			return [new matrix(1, allT.length, allT), y]
+			return [new matrix(allT), y]
 		} else if (t + h > tSpan[1]) {
 			h = tSpan[1] - t;
 		}
 	}
-	return [new matrix(1, allT.length, allT), y];
+	return [new matrix(allT), y];
 }
 
 // uncomment to test compliance with Burden and Faires algorithm

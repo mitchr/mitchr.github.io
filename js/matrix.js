@@ -11,35 +11,30 @@ function linspace(start, end, steps = 100) {
 
 // uses row major order
 class matrix {
-	constructor(n, m, data) {
-		this.n = n;
-		this.m = m;
-		if (data == undefined) {
-			this.data = [];
+	// there are 2 possible formats for the arguments:
+	// 	matrix(data)
+	// 		promotes an array to a 1x(data.length) matrix
+	// 	matrix(n, m)
+	// 		creates an nxm matrix with an empty data array
+	// 	matrix(n, m, data)
+	// 		create an nxm matrix with the array data
+	constructor(...args) {
+		// we were given an array
+		if (args.length == 1) {
+			this.n = 1;
+			this.m = args[0].length;
+			this.data = args[0];
+		} else if (args.length > 1){
+			[this.n, this.m, this.data] = args;
+			//  if we were given just the dimension arguments, initialize data to an empty array
+			if (this.data == undefined) {
+				this.data = [];
+			}
 		} else {
-			this.data = data;
+			console.error("cannot create empty matrix object");
+			return NaN;
 		}
 	}
-
-	// there are 2 possible formats for the arguments:
-	//	matrix(data)
-	//		promotes an array to a 1x(data.length) matrix
-	//	matrix(n, m, data)
-	//		create an nxm matrix with the array data
-	// constructor(...args) {
-	// 	// we were given an array
-	// 	if (args.length == 1) {
-	// 		this.n = 1;
-	// 		this.m = args.length;
-	// 		this.data = args;
-	// 	} else if (args.length == 3){
-	// 		[n, m, data] = args;
-	//
-	// 		this.n = n;
-	// 		this.m = m;
-	// 		this.data = data;
-	// 	}
-	// }
 
 	get(i, j) {
 		return this.data[i*this.m + j];
@@ -81,7 +76,7 @@ class matrix {
 		for (let i = 0; i < this.m; i++) {
 			row.push(this.get(r, i))
 		}
-		return new matrix(1, this.m, row);
+		return new matrix(row);
 		// can do this faster using array slicing, but I need to think about the correct syntax
 		// the commented code below doesn't work correctly for small matrices (like a 2x1 for example)
 		// return new matrix(1, this.m, this.data.slice(this.n*r, this.n*r + this.m));
@@ -184,7 +179,7 @@ class matrix {
 		for (let i = start; i <= end; i+=(end-start)/(steps-1)) {
 			X.push(i);
 		}
-		return new matrix(1, X.length, X);
+		return new matrix(X);
 	}
 
 	static meshgrid(x, y) {
@@ -193,10 +188,10 @@ class matrix {
 
 		// convert x and y to matrices if they are arrays
 		if (x instanceof Array) {
-			x = new matrix(1, x.length, x);
+			x = new matrix(x);
 		}
 		if (y instanceof Array) {
-			y = new matrix(1, y.length, y);
+			y = new matrix(y);
 		}
 
 		for (let i = 0; i < y.m; i++) {
@@ -249,7 +244,7 @@ class matrix {
 	}
 
 	static multiply(A, B) {
-		let C = new matrix(A.n, B.m, []);
+		let C = new matrix(A.n, B.m);
 		for (let i = 0; i < A.n; i++) {
 			for (let j = 0; j < B.m; j++) {
 				let sum = 0;
