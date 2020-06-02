@@ -12,10 +12,10 @@ function handle(msg) {
 	// when it is ready
 	if (document.readyState == 'loading') {
 		document.addEventListener('DOMContentLoaded', (event) => {
-			Plotly.newPlot(divID, plots, defLayout, defConfig);
+			Plotly.react(divID, plots, defLayout, defConfig);
 		});
 	} else { // otherwise, just add the plot to the DOM right now
-		Plotly.newPlot(divID, plots, defLayout, defConfig);
+		Plotly.react(divID, plots, defLayout, defConfig);
 	}
 }
 
