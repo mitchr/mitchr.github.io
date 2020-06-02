@@ -1,8 +1,11 @@
 function linspace(start, end, steps = 100) {
 	let X = [];
-	for (let i = start; i <= end; i+=(end-start)/(steps-1)) {
+	let i = start;
+	while(i < end) {
 		X.push(i);
+		i += (end-start)/(steps-1)
 	}
+	X.push(i)
 	return X;
 }
 

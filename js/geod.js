@@ -1,5 +1,5 @@
-let theta = linspace(0, 2*Math.PI);
-let phi = linspace(0, 2*Math.PI);
+let theta = linspace(0, 2*Math.PI, 40);
+let phi = linspace(0, 2*Math.PI, 40);
 let [T, P] = matrix.meshgrid(theta, phi);
 
 function F(theta, phi) {
