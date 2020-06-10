@@ -1,11 +1,11 @@
 function linspace(start, end, steps = 100) {
 	let X = [];
 	let i = start;
-	while(i < end) {
+	// compare against 0.001 which gives some wiggle room when comparing floats
+	while(i - end < 0.001) {
 		X.push(i);
 		i += (end-start)/(steps-1)
 	}
-	X.push(i)
 	return X;
 }
 
