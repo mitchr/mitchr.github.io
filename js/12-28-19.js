@@ -2,8 +2,25 @@
 let defLayout = {
 	// title: "a sphere",
 	autosize: true,
-	// remove drop pointer on hover
+	// make plot take up entire div
+	margin: {
+		t: 0, // top margin
+		l: 0, // left margin
+		r: 0, // right margin
+		b: 0, // bottom margin
+	},
+
+	// set scene camera
 	scene: {
+		camera: {
+			eye: {
+				x: 1.8,
+				y: 1.8,
+				z: 2.1,
+			},
+		},
+
+		// remove drop pointer on hover
 		xaxis: {showspikes: false},
 		yaxis: {showspikes: false},
 		zaxis: {showspikes: false},
