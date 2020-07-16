@@ -68,9 +68,9 @@ $$\begin{bmatrix}
 \end{bmatrix}$$
 with zeros everywhere except the first sub- and super-diagonals. Then we can construct the coefficient matrix $A$ by using the Kronecker product (denoted with $\otimes$) using $D_n$ and the identity matrix $I_n$:
 
-$$A = \left(I_{n-1} \otimes -4I_{m-1}\right) + \left(D_{n-1} \otimes D_{m-1}\right)$$
+$$A = \left(I_{m-1} \otimes -4I_{n-1}\right) + \left(D_{m-1} \otimes D_{n-1}\right)$$
 
-There may be a more efficient way to produce this matrix quickly, but this method seemed to work well enough for all the problems I tested it on. Using this matrix, we can construct the matrix equation $Au=b$ where $b$ contains the boundary condition information. Then we can solve for the interior nodes by Gaussian elimination $u=A\b$. Here's the equation for $n=m=5$:
+There may be a more efficient way to produce this matrix quickly, but this method seemed to work well enough for all the problems I tested it on. Using this matrix, we can construct the matrix equation $Au=b$ where $b$ contains the boundary condition information. Then we can solve for the interior nodes by Gaussian elimination $u=A \backslash b$. Here's the equation for $n=m=5$:
 
 $$
 \begin{bmatrix}
