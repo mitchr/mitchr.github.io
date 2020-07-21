@@ -10,7 +10,7 @@ function F(theta, phi) {
 }
 
 // differential equationr representing geodesic of torus
-function geodDE(t, z) {
+function geodDE(t, z, p=undefined) {
 	let dzdt = new Array(4);
 	dzdt[0] = z[1];
 	dzdt[1] = 2*Math.sin(z[2])/(2+Math.cos(z[2]))*z[1]*z[3];
@@ -27,9 +27,9 @@ onmessage = function(msg) {
 	// let plots = [torusSurf];
 	let plots = [];
 	for (let i = 0; i < data.length; i++) {
-		let {tSpan, y0, hmax, TOL} = data[i];
+		let {tSpan, y0, p, hmax, TOL} = data[i];
 
-		let [t, y] = rkf45(geodDE, tSpan, y0, hmax, TOL)
+		let [t, y] = rkf45(geodDE, tSpan, y0, p, hmax, TOL)
 		let geod = F(y.col(0), y.col(2));
 
 		let plotData = {
