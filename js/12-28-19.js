@@ -1,3 +1,25 @@
+let theta = linspace(0, 2*Math.PI, 40);
+let phi = theta;
+let [T, P] = matrix.meshgrid(theta, phi);
+
+torusSurf = {
+	type: 'surface',
+	// don't show contour lines on hover
+	contours: {
+		x: {highlight: false},
+		y: {highlight: false},
+		z: {highlight: false},
+	},
+	colorscale: "Viridis",
+
+	showscale: false,
+	hoverinfo: 'skip',
+
+	x: matrix.eWMult(matrix.cos(T), (matrix.sAdd(matrix.cos(P), 2))).to2D(),
+	y: matrix.eWMult(matrix.sin(T), (matrix.sAdd(matrix.cos(P), 2))).to2D(),
+	z: matrix.sin(P).to2D(),
+}
+
 // some defaults for Plotly
 let defLayout = {
 	// title: "a sphere",
@@ -34,13 +56,14 @@ let defConfig = {
 
 // create pool of workers
 let workers = [];
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 2; i++) {
 	workers[i] = new Worker('../js/geodWorker.js');
 	workers[i].onmessage = handle;
 }
 
 function handle(msg) {
 	let {divID, plots} = msg.data;
+	plots.push(torusSurf)
 
 	// if the DOM is still loading, then add an eventListener that will fire
 	// when it is ready
@@ -54,10 +77,6 @@ function handle(msg) {
 }
 
 workers[0].postMessage({
-	divID: "torus",
-})
-
-workers[1].postMessage({
 	divID: "tpGeod",
 	data: [{
 		tSpan: [0, 6.5],
@@ -72,7 +91,7 @@ workers[1].postMessage({
 	}]
 });
 
-workers[2].postMessage({
+workers[1].postMessage({
 	divID: "longWind",
 	data: [{
 		tSpan: [0, 2],
@@ -81,3 +100,7 @@ workers[2].postMessage({
 		TOL: 1e-3,
 	}]
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+	Plotly.react("torus", [torusSurf], defLayout, defConfig);
+})
