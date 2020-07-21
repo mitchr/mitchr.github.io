@@ -77,7 +77,7 @@ workers[2].postMessage({
 	data: [{
 		tSpan: [0, 2],
 		y0: [0, 1, 0, 12],
-		hmax: 0.01,
-		TOL: 1e-1,
+		hmax: 0.25,
+		TOL: 1e-3,
 	}]
 });
