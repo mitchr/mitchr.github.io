@@ -20,7 +20,7 @@ function rk4(f, tSpan, y0, h) {
 }
 
 // runge-kutta fehlberg
-function rkf45(f, tSpan, y0, hmax=0.25, TOL=1e-4) {
+function rkf45(f, tSpan, y0, p=[], hmax=0.25, TOL=1e-4) {
 	// start at the beginning of the interval
 	let t = tSpan[0];
 	let allT = [t];
@@ -38,12 +38,12 @@ function rkf45(f, tSpan, y0, hmax=0.25, TOL=1e-4) {
 
 	// keep integrating until we reach the end of the interval
 	while(t < tSpan[1]) {
-		let k1 = matrix.sMult(f(t, y.row(y.n-1).data), h);
-		let k2 = matrix.sMult(f(t + h/4, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1/4)).data), h);
-		let k3 = matrix.sMult(f(t + 3*h/8, matrix.add(y.row(y.n-1), matrix.sMult(k1, 3/32), matrix.sMult(k2, 9/32)).data), h);
-		let k4 = matrix.sMult(f(t + 12*h/13, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1932/2197), matrix.sMult(k2, -7200/2197), matrix.sMult(k3, 7296/2197)).data), h);
-		let k5 = matrix.sMult(f(t + h, matrix.add(y.row(y.n-1), matrix.sMult(k1, 439/216), matrix.sMult(k2, -8), matrix.sMult(k3, 3680/513), matrix.sMult(k4, -845/4104)).data), h);
-		let k6 = matrix.sMult(f(t + h/2, matrix.add(y.row(y.n-1), matrix.sMult(k1, -8/27), matrix.sMult(k2, 2), matrix.sMult(k3, -3544/2565), matrix.sMult(k4, 1859/4104), matrix.sMult(k5, -11/40)).data), h)
+		let k1 = matrix.sMult(f(t, y.row(y.n-1).data, p), h);
+		let k2 = matrix.sMult(f(t + h/4, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1/4)).data, p), h);
+		let k3 = matrix.sMult(f(t + 3*h/8, matrix.add(y.row(y.n-1), matrix.sMult(k1, 3/32), matrix.sMult(k2, 9/32)).data, p), h);
+		let k4 = matrix.sMult(f(t + 12*h/13, matrix.add(y.row(y.n-1), matrix.sMult(k1, 1932/2197), matrix.sMult(k2, -7200/2197), matrix.sMult(k3, 7296/2197)).data, p), h);
+		let k5 = matrix.sMult(f(t + h, matrix.add(y.row(y.n-1), matrix.sMult(k1, 439/216), matrix.sMult(k2, -8), matrix.sMult(k3, 3680/513), matrix.sMult(k4, -845/4104)).data, p), h);
+		let k6 = matrix.sMult(f(t + h/2, matrix.add(y.row(y.n-1), matrix.sMult(k1, -8/27), matrix.sMult(k2, 2), matrix.sMult(k3, -3544/2565), matrix.sMult(k4, 1859/4104), matrix.sMult(k5, -11/40)).data, p), h)
 
 		// compute rk4 and rk5 for each vector
 		let rk4 = matrix.add(y.row(y.n-1), matrix.sMult(k1, 25/216), matrix.sMult(k3, 1408/2565), matrix.sMult(k4, 2197/4104), matrix.sMult(k5, -1/5));
