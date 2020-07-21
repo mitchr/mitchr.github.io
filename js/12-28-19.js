@@ -60,15 +60,15 @@ workers[0].postMessage({
 workers[1].postMessage({
 	divID: "tpGeod",
 	data: [{
-		tSpan: [0, 7],
+		tSpan: [0, 6.5],
 		y0: [0, 0, 0, 1],
-		hmax: 0.25,
-		TOL: 0.1,
+		hmax: 0.01,
+		TOL: 1e-1,
 	}, {
-		tSpan: [0, 7],
+		tSpan: [0, 6.5],
 		y0: [0, 1, 0, 0],
 		hmax: 0.01,
-		TOL: 0.1,
+		TOL: 1e-1,
 	}]
 });
 
@@ -78,6 +78,6 @@ workers[2].postMessage({
 		tSpan: [0, 2],
 		y0: [0, 1, 0, 12],
 		hmax: 0.01,
-		TOL: 0.00001,
+		TOL: 1e-1,
 	}]
 });
