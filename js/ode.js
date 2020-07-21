@@ -20,7 +20,7 @@ function rk4(f, tSpan, y0, h) {
 }
 
 // runge-kutta fehlberg
-function rkf45(f, tSpan, y0, hmax, TOL) {
+function rkf45(f, tSpan, y0, hmax=0.25, TOL=1e-4) {
 	// start at the beginning of the interval
 	let t = tSpan[0];
 	let allT = [t];
