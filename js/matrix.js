@@ -243,6 +243,18 @@ class matrix {
 		return S;
 	}
 
+	static sub(...A) {
+		let S = A[0].clone();
+		for (let i = 1; i < A.length; i++) {
+			if (A[i].n != S.n && A[i].m != S.m) {
+				console.error("cannot add matrices of differing dimension")
+				return NaN
+			}
+			S.data = S.data.map((e, j) => e - A[i].data[j])
+		}
+		return S;
+	}
+
 	static multiply(A, B) {
 		let C = new matrix(A.n, B.m);
 		for (let i = 0; i < A.n; i++) {
