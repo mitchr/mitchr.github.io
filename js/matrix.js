@@ -58,10 +58,10 @@ class matrix {
 
 	// there's gotta be a faster algorithm for this
 	transpose() {
-		let B = new matrix(A.m, A.n, new Array(A.data.length))
+		let B = new matrix(this.m, this.n, new Array(this.data.length))
 		for (let i = 0; i < this.n; i++) {
 			for (let j = 0; j < this.m; j++) {
-				B.set(j, i, A.get(i, j));
+				B.set(j, i, this.get(i, j));
 			}
 		}
 		return B;
