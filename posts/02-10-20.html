@@ -10,6 +10,10 @@
 	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
 	<script src="../js/katexConfig.js"></script>
 
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="../js/2-10-20.js"></script>
+	<link rel="stylesheet" type="text/css" href="../style/2-10-20.css">
+
 	<link rel="stylesheet" type="text/css" href="../style/post.css">
 	<link rel="stylesheet" type="text/css" href="../style/nav.css">
 </head>
@@ -34,27 +38,13 @@
 How many petals does $r=\sqrt{|\sin(n\theta)|}$ have for $\theta\in[0,2\pi]$ and a positive integer $n$? I saw this question on <a href=https://www.reddit.com/r/askmath/comments/eqvhfo/how_many_pedals_does_the_curve_r_sqrt_sinn%CE%B8_have/>reddit</a> a while back and I typed out a quick sketch of a proof on my phone in the comments there, but I wanted to do something a little more formal here. While thinking about this problem I generated the images below which made me intuitively think that the answer was $2n$, so why not claim this is true and try to prove it.
 <br><br>
 
-<div class="img-container">
-	<div class="img-3">
-		<figure>
-			<img src="../img/n=1.svg" style="width:100%;">
-			<figcaption>$n=1$</figcaption>
-		</figure>
-	</div>
-	<div class="img-3">
-		<figure>
-			<img src="../img/n=3.svg" style="width:100%;">
-			<figcaption>$n=3$</figcaption>
-		</figure>
-	</div>
-	<div class="img-3">
-		<figure>
-			<img src="../img/n=6.svg" style="width:100%;">
-			<figcaption>$n=6$</figcaption>
-		</figure>
-	</div>
+<div id="plot"></div>
+<div id="controls">
+	<div id="display">$n=2$</div>
+	<input id="slider" type="range" min="1" max="20" value="2">
 </div>
 
+<br><br>
 
 <b>Claim.</b> $r=\sqrt{|\sin(n\theta)|}$ has $2n$ petals.
 <br><br>
