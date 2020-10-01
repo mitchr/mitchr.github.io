@@ -24,7 +24,7 @@ class matrix {
 			this.n = 1;
 			this.m = args[0].length;
 			this.data = args[0];
-		} else if (args.length > 1){
+		} else if (args.length > 1) {
 			[this.n, this.m, this.data] = args;
 			//  if we were given just the dimension arguments, initialize data to an empty array
 			if (this.data == undefined) {

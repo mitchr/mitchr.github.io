@@ -19,7 +19,6 @@ function geodDE(t, z, p=undefined) {
 	return new matrix(dzdt)
 }
 
-
 onmessage = function(msg) {
 	let data = msg.data.data;
 
