@@ -90,6 +90,6 @@ function rkf45(f, tSpan, y0, p=[], hmax=0.25, TOL=1e-4) {
 // function test(t, y) {
 // 	let dydt = new Array(1);
 // 	dydt[0] = y - t*t + 1;
-// 	return dydt;
+// 	return new matrix(dydt);
 // }
-// console.log(rkf45(test, [0, 2], [0.5], 0.25, Math.pow(10, -5)))
+// console.log(rkf45(test, [0, 2], [0.5], [], 0.25, 1e-5))
