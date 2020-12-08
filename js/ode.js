@@ -86,6 +86,9 @@ function rkf45(f, tSpan, y0, p=[], hmax=0.25, TOL=1e-4) {
 			return [new matrix(allT), y]
 		} else if (t + h > tSpan[1]) {
 			h = tSpan[1] - t;
+		} else if (h < 1e-10) { // stepsize became incredibly small, usually because ODE is stiff
+			// if the stepsize is too small, then stop execution
+			throw new Error("stepsize too small");
 		}
 	}
 	return [new matrix(allT), y];
