@@ -19,7 +19,12 @@ function rk4(f, tSpan, y0, h) {
 	return [t, y];
 }
 
-// runge-kutta fehlberg
+// runge-kutta fehlberg taken from burden and faires
+// f is the intergrating function
+// 	f must be of the form f(t, z, p):matrix where p is an optional array of parameters
+// y0 is an array of initial values
+// hmax is the largest possible stepsize (optional)
+// tolerance is the minimum tolerance necessary to proceed (optional)
 function rkf45(f, tSpan, y0, p=[], hmax=0.25, TOL=1e-4) {
 	// start at the beginning of the interval
 	let t = tSpan[0];
