@@ -281,4 +281,23 @@ class matrix {
 		}
 		return S;
 	}
+
+	// compute l_inf norm of a matrix
+	static norm(A) {
+		// if A is just a column or row vector, return the largest element
+		if (A.n == 1 || A.m == 1) {
+
+			return Math.max(...A.data.map(Math.abs));
+		}
+
+		let rowSums = [];
+		for (let i = 0; i < A.n; i++) {
+			let sum = 0;
+			for (let j = 0; j < A.m; j++) {
+				sum += Math.abs(A.get(i, j));
+			}
+			rowSums.push(sum);
+		}
+		return Math.max(...rowSums)
+	}
 }
