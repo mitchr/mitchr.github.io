@@ -1,0 +1,17 @@
+a:link, a:visited {
+	text-decoration: none;
+	color: DarkSlateGrey;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+	color: LightSlateGrey;
+}
+
+.navbar-brand {
+	color: DarkSlateGray;
+}
+
+h1, h2 {
+	color: DarkSlateGrey;
+}
