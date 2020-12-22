@@ -17,14 +17,13 @@ h1, h2, h3, h4, th {
 }
 
 .katex-display {
-    overflow-x: auto;
-		overflow-y: hidden;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 /* .katex {
 	font-size: 1.0em;
 } */
-
 #date {
 	/* font-size: 0.9em; */
 	color: LightSlateGrey;
