@@ -2,9 +2,9 @@ function linspace(start, end, steps = 100) {
 	let X = [];
 	let i = start;
 	// compare against 0.001 which gives some wiggle room when comparing floats
-	while(i - end < 0.001) {
+	while (i - end < 0.001) {
 		X.push(i);
-		i += (end-start)/(steps-1)
+		i += (end - start) / (steps - 1);
 	}
 	return X;
 }
@@ -37,11 +37,11 @@ class matrix {
 	}
 
 	get(i, j) {
-		return this.data[i*this.m + j];
+		return this.data[i * this.m + j];
 	}
 
 	set(i, j, e) {
-		this.data[i*this.m + j] = e;
+		this.data[i * this.m + j] = e;
 	}
 
 	clone() {
@@ -58,7 +58,7 @@ class matrix {
 
 	// there's gotta be a faster algorithm for this
 	transpose() {
-		let B = new matrix(this.m, this.n, new Array(this.data.length))
+		let B = new matrix(this.m, this.n, new Array(this.data.length));
 		for (let i = 0; i < this.n; i++) {
 			for (let j = 0; j < this.m; j++) {
 				B.set(j, i, this.get(i, j));
@@ -74,7 +74,7 @@ class matrix {
 		}
 		let row = [];
 		for (let i = 0; i < this.m; i++) {
-			row.push(this.get(r, i))
+			row.push(this.get(r, i));
 		}
 		return new matrix(row);
 		// can do this faster using array slicing, but I need to think about the correct syntax
@@ -98,8 +98,8 @@ class matrix {
 	// replace row r with the data in d
 	replaceRow(r, d) {
 		if (r >= this.n) {
-			console.error("cannot replacerow, no row " + r)
-			return
+			console.error("cannot replacerow, no row " + r);
+			return;
 		}
 		// this and d should have the same number of columns
 		if (this.m != d.m) {
@@ -108,7 +108,7 @@ class matrix {
 		}
 
 		for (let i = 0; i < this.m; i++) {
-			this.set(r, i, d.data[i])
+			this.set(r, i, d.data[i]);
 		}
 	}
 
@@ -119,8 +119,8 @@ class matrix {
 		}
 
 		let col = [];
-		for(let i = 0; i < this.n; i++) {
-			col.push(this.get(i, c))
+		for (let i = 0; i < this.n; i++) {
+			col.push(this.get(i, c));
 		}
 
 		return new matrix(this.n, 1, col);
@@ -128,12 +128,12 @@ class matrix {
 
 	appendCol(c) {
 		if (this.n != c.n) {
-			console.error("cannot append column, dimension error")
+			console.error("cannot append column, dimension error");
 		}
 
 		let writePtr = this.m;
 		let i = 0;
-		while (writePtr < (this.data.length + c.data.length)) {
+		while (writePtr < this.data.length + c.data.length) {
 			this.data.splice(writePtr, 0, c.data[i]);
 			// we need to add 1 here because when we splice, we are adding a new
 			// element which is one more element to traverse over
@@ -146,11 +146,11 @@ class matrix {
 
 	replaceCol(c, d) {
 		if (this.n != d.n) {
-			console.error("cannot replaceCol, dimension error")
+			console.error("cannot replaceCol, dimension error");
 		}
 
-		for(let i = 0; i < this.n; i++) {
-			this.set(i, c, d.data[i])
+		for (let i = 0; i < this.n; i++) {
+			this.set(i, c, d.data[i]);
 		}
 	}
 
@@ -162,7 +162,7 @@ class matrix {
 		}
 
 		for (let k = 0; k < this.data.length; k++) {
-			let i = Math.floor(k/this.m);
+			let i = Math.floor(k / this.m);
 			let j = k % this.m;
 			A[i][j] = this.data[k];
 		}
@@ -176,7 +176,7 @@ class matrix {
 
 	static linspace(start, end, steps = 100) {
 		let X = [];
-		for (let i = start; i <= end; i+=(end-start)/(steps-1)) {
+		for (let i = start; i <= end; i += (end - start) / (steps - 1)) {
 			X.push(i);
 		}
 		return new matrix(X);
@@ -195,20 +195,20 @@ class matrix {
 		}
 
 		for (let i = 0; i < y.m; i++) {
-			X.push.apply(X, x.data)
+			X.push.apply(X, x.data);
 		}
 
 		let row = new Array(x.m);
 		for (let i = 0; i < y.m; i++) {
 			row.fill(y.data[i]);
-			Y.push.apply(Y, row)
+			Y.push.apply(Y, row);
 		}
-		return [new matrix(y.m, x.m, X), new matrix(y.m, x.m, Y)]
+		return [new matrix(y.m, x.m, X), new matrix(y.m, x.m, Y)];
 	}
 
 	// apply function f to every element of data
 	map(f) {
-		return new matrix(this.n, this.m, A.data.map(f))
+		return new matrix(this.n, this.m, A.data.map(f));
 	}
 
 	static sin(A) {
@@ -235,10 +235,10 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot add matrices of differing dimension")
-				return NaN
+				console.error("cannot add matrices of differing dimension");
+				return NaN;
 			}
-			S.data = S.data.map((e, j) => e + A[i].data[j])
+			S.data = S.data.map((e, j) => e + A[i].data[j]);
 		}
 		return S;
 	}
@@ -247,10 +247,10 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot add matrices of differing dimension")
-				return NaN
+				console.error("cannot add matrices of differing dimension");
+				return NaN;
 			}
-			S.data = S.data.map((e, j) => e - A[i].data[j])
+			S.data = S.data.map((e, j) => e - A[i].data[j]);
 		}
 		return S;
 	}
@@ -274,10 +274,10 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot element-wise multiply matrices of differing dimension")
+				console.error("cannot element-wise multiply matrices of differing dimension");
 				return NaN;
 			}
-			S.data = S.data.map((e, j) => e * A[i].data[j])
+			S.data = S.data.map((e, j) => e * A[i].data[j]);
 		}
 		return S;
 	}
@@ -298,6 +298,6 @@ class matrix {
 			}
 			rowSums.push(sum);
 		}
-		return Math.max(...rowSums)
+		return Math.max(...rowSums);
 	}
 }
