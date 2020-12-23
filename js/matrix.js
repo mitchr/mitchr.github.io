@@ -70,7 +70,8 @@ class matrix {
 	// return this.data(r, :)
 	row(r) {
 		if (r >= this.n) {
-			console.error("cannot replacerow, no row " + r)
+			console.error("no row " + r);
+			return NaN;
 		}
 		let row = [];
 		for (let i = 0; i < this.m; i++) {
