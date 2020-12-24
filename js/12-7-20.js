@@ -1,4 +1,4 @@
-let theta = linspace(0, 2*Math.PI, 40);
+let theta = linspace(0, 2*Math.PI, 25);
 let phi = theta;
 let [T, P] = matrix.meshgrid(theta, phi);
 
