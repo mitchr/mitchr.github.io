@@ -60,14 +60,16 @@ let firstPlot = true;
 
 // handle worker response
 worker.onmessage = ((msg) => {
+	errorDiv = document.getElementById("error");
 	if (msg.data.err != undefined) {
 		// display message of some kind
-		console.log("caught exception: " + msg.data.err)
-		document.getElementById("error").innerText = msg.data.err
+		console.error("caught exception: " + msg.data.err);
+		errorDiv.innerText = msg.data.err;
+		errorDiv.style.display = "block";
 		return;
 	} else {
 		// clear a potentially existing error if the method succeeds
-		document.getElementById("error").innerText = ""
+		errorDiv.style.display = "none";
 	}
 	let {divID, geodTrace} = msg.data;
 
