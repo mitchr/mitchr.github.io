@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		r: f(2, theta),
 		theta: theta,
 		thetaunit: 'radians',
-		type: 'scatterpolar'
+		type: 'scatterpolar',
+		line: {
+			width: 3,
+		},
 	}]
 
 	let layout = {
