@@ -1,3 +1,5 @@
+'use strict';
+
 let theta = linspace(0, 2 * Math.PI, 25);
 let phi = theta;
 let [T, P] = matrix.meshgrid(theta, phi);
@@ -6,9 +8,9 @@ let torusSurf = {
 	type: "surface",
 	// don't show contour lines on hover
 	contours: {
-		x: {highlight: false},
-		y: {highlight: false},
-		z: {highlight: false}
+		x: { highlight: false },
+		y: { highlight: false },
+		z: { highlight: false }
 	},
 	colorscale: "Viridis",
 
@@ -43,9 +45,9 @@ let defLayout = {
 		},
 
 		// remove drop pointer on hover
-		xaxis: {showspikes: false},
-		yaxis: {showspikes: false},
-		zaxis: {showspikes: false}
+		xaxis: { showspikes: false },
+		yaxis: { showspikes: false },
+		zaxis: { showspikes: false }
 	}
 };
 
@@ -62,7 +64,7 @@ for (var i = 0; i < 2; i++) {
 }
 
 function handle(msg) {
-	let {divID, plots} = msg.data;
+	let { divID, plots } = msg.data;
 	plots.push(torusSurf);
 
 	// if the DOM is still loading, then add an eventListener that will fire
@@ -80,27 +82,27 @@ function handle(msg) {
 workers[0].postMessage({
 	divID: "tpGeod",
 	data: [{
-			tSpan: [0, 6.5],
-			y0: [0, 0, 0, 1],
-			hmax: 0.01,
-			TOL: 1e-1
-		},{
-			tSpan: [0, 6.5],
-			y0: [0, 1, 0, 0],
-			hmax: 0.01,
-			TOL: 1e-1
-		}]
+		tSpan: [0, 6.5],
+		y0: [0, 0, 0, 1],
+		hmax: 0.01,
+		TOL: 1e-1
+	}, {
+		tSpan: [0, 6.5],
+		y0: [0, 1, 0, 0],
+		hmax: 0.01,
+		TOL: 1e-1
+	}]
 });
 
 workers[1].postMessage({
 	divID: "longWind",
 	data: [{
-			tSpan: [0, 2],
-			y0: [0, 1, 0, 12],
-			hmax: 0.001,
-			TOL: 1e-1
-		}]
-	});
+		tSpan: [0, 2],
+		y0: [0, 1, 0, 12],
+		hmax: 0.001,
+		TOL: 1e-1
+	}]
+});
 
 document.addEventListener("DOMContentLoaded", event => {
 	Plotly.react("torus", [torusSurf], defLayout, defConfig);

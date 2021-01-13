@@ -1,3 +1,5 @@
+'use strict';
+
 // gausiann elimination with partial pivoting (back susbstitution)
 // A must be an nxn matrix
 function GEPP(A, b) {
@@ -13,7 +15,7 @@ function GEPP(A, b) {
 	for (let k = 0; k < A.n - 1; k++) {
 		// find the index of the element with maximum absolute value in the kth column
 		let i_k = k;
-		for(let j = k; j < A.n; j++) {
+		for (let j = k; j < A.n; j++) {
 			if (Math.abs(A.get(j, k)) >= Math.abs(A.get(i_k, k))) {
 				i_k = j;
 			}
@@ -29,21 +31,21 @@ function GEPP(A, b) {
 		// r_i -> r_i - a_ik/a_kk * r_k
 		for (let i = k + 1; i < A.n; i++) {
 			// save this value because A[i,k] will be set to 0 after we solve for the rows beneath
-			temp = A.get(i, k)
+			let temp = A.get(i, k)
 
-			A.replaceRow(i, matrix.add(A.row(i), matrix.sMult(A.row(k), -A.get(i, k)/A.get(k, k))));
-			b.set(i, 0, b.get(i, 0) - temp/A.get(k,k) * b.get(k, 0));
+			A.replaceRow(i, matrix.add(A.row(i), matrix.sMult(A.row(k), -A.get(i, k) / A.get(k, k))));
+			b.set(i, 0, b.get(i, 0) - temp / A.get(k, k) * b.get(k, 0));
 		}
 	}
 
 	// perform back susbstitution
-	b.set(b.n-1, 0, b.get(b.n-1, 0) / A.get(A.n-1, A.n-1));
+	b.set(b.n - 1, 0, b.get(b.n - 1, 0) / A.get(A.n - 1, A.n - 1));
 	for (let i = A.n - 2; i > -1; i--) {
 		sum = 0;
 		for (let j = i + 1; j < A.n; j++) {
 			sum += A.get(i, j) * b.get(j, 0);
 		}
-		b.set(i, 0, (b.get(i, 0) - sum)/A.get(i, i))
+		b.set(i, 0, (b.get(i, 0) - sum) / A.get(i, i))
 	}
 
 	return b;
@@ -64,7 +66,7 @@ function GESPP(A, b) {
 	let s = [];
 	for (let i = 0; i < A.n; i++) {
 		let max = 0;
-		for (let j = 0; j < A.m; j ++) {
+		for (let j = 0; j < A.m; j++) {
 			if (Math.abs(A.get(i, j)) > max) {
 				max = Math.abs(A.get(i, j));
 			}
@@ -81,17 +83,17 @@ function GESPP(A, b) {
 		// calculate
 		let p = [];
 		for (let i = k; i < A.n; i++) {
-			p.push(Math.abs(A.get(i, k))/s.data[i]);
+			p.push(Math.abs(A.get(i, k)) / s.data[i]);
 		}
 		// console.log(p)
 
 		// find smallest p_k such that p[j] > p_k
 		let p_k = k;
-		for(let j = 0; j < p.length; j++) {
+		for (let j = 0; j < p.length; j++) {
 			// console.log(j, p[j], p_k)
 			if (p[j] > p_k) {
 				// console.log(p_k, j, j+k)
-				p_k = j+k;
+				p_k = j + k;
 				// force loop to end
 				j = A.n;
 			}
@@ -120,12 +122,12 @@ function GESPP(A, b) {
 		for (let i = k + 1; i < A.n; i++) {
 			// console.log(i)
 			// save this value because A[i,k] will be set to 0 after we solve for the rows beneath
-			temp = A.get(i, k)
+			let temp = A.get(i, k)
 
 			// console.log(i, k, k, k)
 
-			A.replaceRow(i, matrix.add(A.row(i), matrix.sMult(A.row(k), -A.get(i, k)/A.get(k, k))));
-			b.set(i, 0, b.get(i, 0) - temp/A.get(k, k) * b.get(k, 0));
+			A.replaceRow(i, matrix.add(A.row(i), matrix.sMult(A.row(k), -A.get(i, k) / A.get(k, k))));
+			b.set(i, 0, b.get(i, 0) - temp / A.get(k, k) * b.get(k, 0));
 		}
 		// console.log("after solving below rows")
 		// console.log(A.to2D())
@@ -133,13 +135,13 @@ function GESPP(A, b) {
 	}
 
 	// perform back susbstitution
-	b.set(b.n-1, 0, b.get(b.n-1, 0) / A.get(A.n-1, A.n-1));
+	b.set(b.n - 1, 0, b.get(b.n - 1, 0) / A.get(A.n - 1, A.n - 1));
 	for (let i = A.n - 2; i > -1; i--) {
-		sum = 0;
+		let sum = 0;
 		for (let j = i + 1; j < A.n; j++) {
 			sum += A.get(i, j) * b.get(j, 0);
 		}
-		b.set(i, 0, (b.get(i, 0) - sum)/A.get(i, i))
+		b.set(i, 0, (b.get(i, 0) - sum) / A.get(i, i))
 	}
 
 	return b;

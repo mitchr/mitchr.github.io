@@ -1,21 +1,23 @@
+'use strict';
+
 function linspace(start, end, steps = 100) {
 	let X = [];
 	let i = start;
 	// compare against 0.001 which gives some wiggle room when comparing floats
-	while(i - end < 0.001) {
+	while (i - end < 0.001) {
 		X.push(i);
-		i += (end-start)/(steps-1)
+		i += (end - start) / (steps - 1)
 	}
 	return X;
 }
 
 function f(n, theta) {
 	let X = theta.slice();
-	return X.map(e => Math.sqrt(Math.abs(Math.sin(n*e))));
+	return X.map(e => Math.sqrt(Math.abs(Math.sin(n * e))));
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-	let theta = linspace(0, 2*Math.PI, 4500)
+document.addEventListener('DOMContentLoaded', () => {
+	let theta = linspace(0, 2 * Math.PI, 4500)
 	let data = [{
 		r: f(2, theta),
 		theta: theta,
@@ -35,14 +37,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	let config = {
 		displayModeBar: false,
-		// this really fucks with it for some reason
 		responsive: true,
 	};
 
 	Plotly.newPlot('plot', data, layout, config)
 
 	// when slider is changed
-	document.getElementById("slider").oninput = function() {
+	document.getElementById("slider").oninput = () => {
 		data[0].r = f(this.value, theta);
 		Plotly.react('plot', data, layout)
 

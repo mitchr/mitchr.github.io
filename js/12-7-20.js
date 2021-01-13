@@ -1,14 +1,16 @@
-let theta = linspace(0, 2*Math.PI, 25);
+'use strict';
+
+let theta = linspace(0, 2 * Math.PI, 25);
 let phi = theta;
 let [T, P] = matrix.meshgrid(theta, phi);
 
-torusSurf = {
+let torusSurf = {
 	type: 'surface',
 	// don't show contour lines on hover
 	contours: {
-		x: {highlight: false},
-		y: {highlight: false},
-		z: {highlight: false},
+		x: { highlight: false },
+		y: { highlight: false },
+		z: { highlight: false },
 	},
 	colorscale: "Viridis",
 
@@ -42,9 +44,9 @@ let defLayout = {
 		},
 
 		// remove drop pointer on hover
-		xaxis: {showspikes: false},
-		yaxis: {showspikes: false},
-		zaxis: {showspikes: false},
+		xaxis: { showspikes: false },
+		yaxis: { showspikes: false },
+		zaxis: { showspikes: false },
 	},
 };
 
@@ -60,7 +62,7 @@ let firstPlot = true;
 
 // handle worker response
 worker.onmessage = ((msg) => {
-	errorDiv = document.getElementById("error");
+	let errorDiv = document.getElementById("error");
 	if (msg.data.err != undefined) {
 		// display message of some kind
 		console.error("caught exception: " + msg.data.err);
@@ -71,7 +73,7 @@ worker.onmessage = ((msg) => {
 		// clear a potentially existing error if the method succeeds
 		errorDiv.style.display = "none";
 	}
-	let {divID, geodTrace} = msg.data;
+	let { divID, geodTrace } = msg.data;
 
 	// only called when initializing the plot the first time
 	if (firstPlot) {
@@ -107,7 +109,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 		divID: "plot",
 		data: {
 			tSpan: [0, 1],
-			BC: [0, Math.PI, Math.PI/2, Math.PI/2],
+			BC: [0, Math.PI, Math.PI / 2, Math.PI / 2],
 			p: [1, 2, 1],
 		}
 	});

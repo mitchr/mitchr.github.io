@@ -1,11 +1,13 @@
+'use strict';
+
 importScripts("./matrix.js");
 importScripts("./ode.js");
 
 // defines torus surface
 function F(theta, phi) {
-	x = matrix.eWMult(matrix.cos(theta), matrix.sAdd(matrix.cos(phi), 2));
-	y = matrix.eWMult(matrix.sin(theta), matrix.sAdd(matrix.cos(phi), 2));
-	z = matrix.sin(phi);
+	let x = matrix.eWMult(matrix.cos(theta), matrix.sAdd(matrix.cos(phi), 2));
+	let y = matrix.eWMult(matrix.sin(theta), matrix.sAdd(matrix.cos(phi), 2));
+	let z = matrix.sin(phi);
 	return [x.data, y.data, z.data];
 }
 
@@ -19,14 +21,14 @@ function geodDE(t, z, p = undefined) {
 	return new matrix(dzdt);
 }
 
-onmessage = function(msg) {
+onmessage = function (msg) {
 	let data = msg.data.data;
 
 	// for each entry in data, run rkf45 and collect result in resp
 	// let plots = [torusSurf];
 	let plots = [];
 	for (let i = 0; i < data.length; i++) {
-		let {tSpan, y0, p, hmax, TOL} = data[i];
+		let { tSpan, y0, p, hmax, TOL } = data[i];
 
 		let [t, y] = rkf45(geodDE, tSpan, y0, p, hmax, TOL);
 		let geod = F(y.col(0), y.col(2));

@@ -1,3 +1,5 @@
+'use strict';
+
 function linspace(start, end, steps = 100) {
 	let X = [];
 	let i = start;
