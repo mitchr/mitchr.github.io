@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	Plotly.newPlot('plot', data, layout, config)
 
 	// when slider is changed
-	document.getElementById("slider").oninput = () => {
-		data[0].r = f(this.value, theta);
+	document.getElementById("slider").oninput = (e) => {
+		data[0].r = f(e.target.value, theta);
 		Plotly.react('plot', data, layout)
 
 		// update 'n=' display using katex
-		katex.render(`n=${this.value}`, document.getElementById("display"), {})
+		katex.render(`n=${e.target.value}`, document.getElementById("display"), {})
 	}
 })
