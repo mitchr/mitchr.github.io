@@ -58,9 +58,7 @@ function rkf45(f, tSpan, y0, p = [], hmax = 0.25, TOL = 1e-4) {
 
 		// determine maximum error of all rk5-rk4
 		let diff = matrix.add(rk5, matrix.sMult(rk4, -1));
-		let diffmax = diff.data.reduce((a, b) => {
-			return Math.max(a, b);
-		})
+		let diffmax = diff.data.reduce((a, b) => Math.max(a, b));
 
 		let R = Math.abs(diffmax) / h;
 		// accept rk4 approx
