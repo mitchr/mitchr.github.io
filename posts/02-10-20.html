@@ -11,27 +11,21 @@
 	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous"></script>
 	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
 	<script src="../js/katexConfig.js"></script>
+	<script src="../navigation.js"></script>
 
 	<script src="https://cdn.plot.ly/plotly-2.1.0.min.js"></script>
 	<script src="../js/2-10-20.js"></script>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="../style/overall.css">
 </head>
 
 <body>
-	<nav class="navbar navbar-default navbar-expand bg-light">
-		<span class="navbar-brand">Mitchell Riley</span>
-		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="../index.html">Posts</a></li>
-			<li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-		</ul>
-	</nav>
-	<br>
+	<site-navigator isPost="true"></site-navigator>
 
 	<div class="container">
 		<h3 class="h3">A Little Trigonometry Proof</h3>
-		<div id="date">February 10, 2020</div>
+		<span id="date">February 10, 2020</span>
 		<br>
 
 		How many petals does $r=\sqrt{|\sin(n\theta)|}$ have for $\theta\in[0,2\pi]$ and a positive integer $n$? I saw this question on <a href=https://www.reddit.com/r/askmath/comments/eqvhfo/how_many_pedals_does_the_curve_r_sqrt_sinn%CE%B8_have />reddit</a> a while back and I typed out a quick sketch of a proof on my phone in the comments there, but I wanted to do something a little more formal here. While thinking about this problem I generated the images below which made me intuitively think that the answer was $2n$, so why not claim this is true and try to prove it.
