@@ -12,8 +12,7 @@ function linspace(start, end, steps = 100) {
 }
 
 function f(n, theta) {
-	let X = theta.slice();
-	return X.map(e => Math.sqrt(Math.abs(Math.sin(n * e))));
+	return theta.map(e => Math.sqrt(Math.abs(Math.sin(n * e))));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
