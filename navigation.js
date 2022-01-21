@@ -8,10 +8,10 @@ template.innerHTML = `
 
 <nav class="navbar navbar-expand w-100 mb-2" style="background-color: darkslategray;">
 <div class="container">
-	<a class="navbar-brand text-white">Mitchell Riley</a>
+	<span class="navbar-brand text-white">Mitchell Riley</span>
 	<ul class="navbar-nav">
-		<li class="nav-item"><a href="./index.html" class="btn btn-outline-secondary text-white d-block">Posts</a></li>
-		<li class="nav-item ms-2"><a href="./about.html" class="btn btn-outline-secondary text-white d-block">About</a></li>
+		<li class="nav-item"><a href="./index.html" class="btn btn-outline-secondary text-white">Posts</a></li>
+		<li class="nav-item ms-2"><a href="./about.html" class="btn btn-outline-secondary text-white">About</a></li>
 	</ul>
 </div>
 </nav>`;
