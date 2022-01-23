@@ -1,11 +1,33 @@
+a {
+	position: relative;
+}
+
 a:link, a:visited {
 	text-decoration: none;
-	color: DarkSlateGrey;
+	color: #a46565;
 }
 
 a:hover, a:active {
-	text-decoration: underline;
-	color: LightSlateGrey;
+	color: #caa5a5;
+}
+
+a:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	opacity: 0.33;
+	background-color: #caa5a5;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out;
+}
+
+a:hover:before {
+  visibility: visible;
+	text-decoration: none;
+  width: 100%;
 }
 
 .navbar-brand {
