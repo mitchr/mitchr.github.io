@@ -30,6 +30,10 @@ a:hover:before {
   width: 100%;
 }
 
+.noHover:before {
+	height: 0%;
+}
+
 .navbar-brand {
 	color: DarkSlateGray;
 }
