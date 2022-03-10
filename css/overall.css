@@ -11,7 +11,7 @@ a:hover, a:active {
 	color: #caa5a5;
 }
 
-a:before {
+a:before, .hasHover:before {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -24,7 +24,7 @@ a:before {
 	transition: all 0.3s ease-in-out;
 }
 
-a:hover:before {
+a:hover:before, .hasHover:hover:before{
   visibility: visible;
 	text-decoration: none;
   width: 100%;

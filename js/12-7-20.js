@@ -56,7 +56,7 @@ let defConfig = {
 };
 
 // create one new worker
-let worker = new Worker('../js/cshootWorker.js');
+let worker = new Worker('../../../../js/cshootWorker.js');
 
 let firstPlot = true;
 

@@ -53,13 +53,14 @@ let defLayout = {
 
 let defConfig = {
 	displayModeBar: false,
+	// scrollZoom: false,
 	responsive: true
 };
 
 // create pool of workers
 let workers = [];
 for (var i = 0; i < 2; i++) {
-	workers[i] = new Worker("../js/geodWorker.js");
+	workers[i] = new Worker("../../../../../js/geodWorker.js");
 	workers[i].onmessage = handle;
 }
 
