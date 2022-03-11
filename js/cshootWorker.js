@@ -85,6 +85,9 @@ self.onmessage = function (msg) {
 		[t, y] = cShoot(tSpan, BC, p);
 	} catch (err) {
 		// if RK45F could not solve, return the error back to the main thread
+		if (err instanceof Error) {
+			err = err.message;
+		}
 		postMessage({ err: err });
 		return;
 	}
