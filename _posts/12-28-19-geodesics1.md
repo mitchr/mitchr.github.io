@@ -4,11 +4,11 @@ title: "Deriving the Geodesics of a Torus"
 date: 2019-12-28
 
 katex: true
+scripts:
+- https://cdn.plot.ly/plotly-gl3d-2.1.0.min.js
+- ../../../js/matrix.js
+- ../../../js/12-28-19.js
 ---
-
-<script defer src="https://cdn.plot.ly/plotly-gl3d-2.1.0.min.js"></script>
-<script defer src="{{site.baseurl}}/js/matrix.js"></script>
-<script defer src="{{site.baseurl}}/js/12-28-19.js"></script>
 
 Suppose we have a torus $\mathcal{T}$ paramaterized by
 

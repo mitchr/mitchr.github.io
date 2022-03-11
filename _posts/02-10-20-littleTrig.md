@@ -4,10 +4,10 @@ title: "A Little Trigonometry Proof"
 date: 2020-01-12
 
 katex: true
+scripts:
+- https://cdn.plot.ly/plotly-strict-2.1.0.min.js
+- ../../../js/2-10-20.js
 ---
-
-<script defer src="https://cdn.plot.ly/plotly-strict-2.1.0.min.js"></script>
-<script defer src="{{site.baseurl}}/js/2-10-20.js"></script>
 
 How many petals does $r=\sqrt{\|\sin(n\theta)\|}$ have for $\theta\in[0,2\pi]$ and a positive integer $n$? I saw this question on [reddit](https://www.reddit.com/r/askmath/comments/eqvhfo/how_many_pedals_does_the_curve_r_sqrt_sinn%CE%B8_have) a while back and I typed out a quick sketch of a proof on my phone in the comments there, but I wanted to do something a little more formal here. While thinking about this problem I generated the images below which made me intuitively think that the answer was $2n$, so why not claim this is true and try to prove it.
 

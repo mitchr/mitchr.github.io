@@ -4,11 +4,11 @@ title: "Geodesics Boogaloo"
 date: 2020-12-07
 
 katex: true
+scripts:
+- https://cdn.plot.ly/plotly-gl3d-2.1.0.min.js
+- ../../../js/matrix.js
+- ../../../js/12-7-20.js
 ---
-
-<script defer src="https://cdn.plot.ly/plotly-gl3d-2.1.0.min.js"></script>
-<script src="{{site.baseurl}}/js/matrix.js"></script>
-<script src="{{site.baseurl}}/js/12-7-20.js"></script>
 
 [Some posts back]({%post_url 01-12-20-geodesics2%}) I was trying to solve the boundary value problem associated with toroidal geodesics, and I ran into some problems. The crux of these issues what that I was trying to satisfy the default geodesic equations on the arbitrary interval $(0,1)$, when in actuality there was no mathematical basis in choosing that. The fix for this is the inclusion of a simple theorem:
 

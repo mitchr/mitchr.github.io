@@ -19,6 +19,11 @@
 		}
 
 	</style>
+
+	<!-- additional scripts -->
+	{%for include in page.scripts%}
+	<script defer src="{{include}}"></script>
+	{%endfor%}
 </head>
 
 <body>
