@@ -25,12 +25,8 @@ function cShoot(tSpan, BC, p) {
 		return new matrix([w.get(w.n - 1, 0) - thetaBeta, w.get(w.n - 1, 2) - phiBeta]);
 	}
 
-	try {
-		let c = newtonSys(residual, new matrix([thetaPrime, phiPrime]).transpose());
-		return rkf45(geod, tSpan, [thetaAlpha, c.data[0], phiAlpha, c.data[1]], p, 0.05);
-	} catch (err) {
-		throw err; // throw back up callstack
-	}
+	let c = newtonSys(residual, new matrix([thetaPrime, phiPrime]).transpose());
+	return rkf45(geod, tSpan, [thetaAlpha, c.data[0], phiAlpha, c.data[1]], p, 0.05);
 }
 
 function geod(t, z, p) {
@@ -89,7 +85,7 @@ self.onmessage = function (msg) {
 		[t, y] = cShoot(tSpan, BC, p);
 	} catch (err) {
 		// if RK45F could not solve, return the error back to the main thread
-		postMessage({ err: err.message });
+		postMessage({ err: err });
 		return;
 	}
 

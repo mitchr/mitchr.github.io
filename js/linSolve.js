@@ -72,8 +72,7 @@ function GESPP(A, b) {
 			}
 		}
 		if (max == 0) {
-			console.error("system has no solution (singular matrix)");
-			return NaN;
+			throw "system has no solution (singular matrix)";
 		}
 		s.push(max);
 	}
