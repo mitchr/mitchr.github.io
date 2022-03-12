@@ -135,13 +135,11 @@ class matrix {
 		}
 
 		let writePtr = this.m;
-		let i = 0;
-		while (writePtr < this.data.length + c.data.length) {
+		for (let i = 0; i < c.data.length; i++) {
 			this.data.splice(writePtr, 0, c.data[i]);
 			// we need to add 1 here because when we splice, we are adding a new
 			// element which is one more element to traverse over
 			writePtr += this.m + 1;
-			i++;
 		}
 
 		this.m++;
