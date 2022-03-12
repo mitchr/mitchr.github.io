@@ -94,6 +94,43 @@ function rkf45(f, tSpan, y0, p = [], hmax = 0.25, TOL = 1e-4) {
 	return [new matrix(allT), y];
 }
 
+function bckwdEuler(f, t0, tf, y0, p = [], h = 0.25) {
+	// if y0 is already a matrix, then that's fine
+	// otherwise, create a new matrix object
+	let y = new matrix(1, 1);
+	if (y0 instanceof matrix) {
+		y.appendCol(y0)
+	} else {
+		// need to clone y0 here to prevent modification
+		y = new matrix(y0.slice(0));
+	}
+
+	let tSpan = [];
+	tSpan.push(t0);
+	let t = t0;
+	while (t < tf) {
+		// y_{k}
+		let yk = y.row(y.n - 1).transpose()
+
+		// let residual = (yk1) => yk1 - yk - h * f(t, yk1, p);
+		let residual = (yk1) => {
+			if (!(yk1 instanceof matrix)) {
+				yk1 = new matrix(yk1).transpose();
+			}
+
+			return matrix.add(yk1, matrix.sMult(yk, -1), matrix.sMult(f(t, yk1.data, p), -h).transpose());
+		};
+
+		// solve for y_{k+1}
+		let u = newtonSys(residual, yk);
+		y.appendRow(u.transpose());
+		t += h;
+		tSpan.push(t);
+	}
+
+	return [tSpan, y];
+}
+
 // Newton's method of finding solution set of simultaneous
 // f = function handle returning [f1;f2;...;fn]
 // u = starting solution vector [u1;u2]
