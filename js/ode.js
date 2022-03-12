@@ -94,6 +94,60 @@ function rkf45(f, tSpan, y0, p = [], hmax = 0.25, TOL = 1e-4) {
 	return [new matrix(allT), y];
 }
 
+// Newton's method of finding solution set of simultaneous
+// f = function handle returning [f1;f2;...;fn]
+// u = starting solution vector [u1;u2]
+function newtonSys(f, u, TOL = 1e-2) {
+	for (let i = 0; i < 200; i++) {
+		let J = jac(f, u);
+		let dx = GESPP(J, matrix.sMult(f(u), -1));
+
+		let prevU = u.clone();
+		u = matrix.add(u, dx);
+
+		if (matrix.norm(matrix.sub(u, prevU)) < TOL) {
+			return u;
+		}
+	}
+	throw new Error("Could not find root in 200 iterations of Newton-Raphson")
+}
+
+// approximate the jacobian of a system via finite differences.
+// f(x_1, x_2, ..., x_n) = [f_1(x_1, ..., x_n), ..., f_n(x_1, ..., x_n)] at x
+function jac(f, x, h = 1e-8) {
+	// compute finite difference expressions
+	// the first row contains the x_1 differential for f_1, f_2, ..., f_n,
+	// and so on for the other rows
+	let m = [];
+	for (let i = 0; i < x.data.length; i++) {
+		let term1 = constructFiniteDifferenceTerm(x.data, i, h);
+		let term2 = constructFiniteDifferenceTerm(x.data, i, -h);
+
+		let row = matrix.sMult(matrix.add(f(term1), matrix.sMult(f(term2), -1)), 1 / (2 * h));
+		m.push(...row.data);
+	}
+
+	return new matrix(x.data.length, x.data.length, m).transpose();
+}
+
+function constructFiniteDifferenceTerm(x, position, h) {
+	let row = [];
+	for (let i = 0; i < x.length; i++) {
+		if (position == i) {
+			row.push(x[i] + h);
+		} else {
+			row.push(x[i]);
+		}
+	}
+	return row;
+}
+
+// function F(u) {
+// 	return new matrix([u[0] * u[1], u[1] * u[1], u[2] * u[1], u[3] * u[1]]);
+// }
+
+// console.log("jac", jacn(F, new matrix([1, 2, 3, 4])).to2D())
+
 // uncomment to test compliance with Burden and Faires algorithm
 // function test(t, y) {
 // 	let dydt = new Array(1);

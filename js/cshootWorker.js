@@ -40,35 +40,6 @@ function geod(t, z, p) {
 	return new matrix(dzdt);
 }
 
-// Newton's method of finding solution set of simultaneous
-// f = function handle returning [f1;f2;...;fn]
-// u = starting solution vector [u1;u2]
-function newtonSys(f, u, TOL = 1e-2) {
-	for (let i = 0; i < 200; i++) {
-		let J = jac(f, u);
-		let dx = GESPP(J, matrix.sMult(f(u), -1).transpose());
-
-		let prevU = u.clone();
-		u = matrix.add(u, dx);
-
-		if (matrix.norm(matrix.sub(u, prevU)) < TOL) {
-			return u;
-		}
-	}
-	throw new Error("Could not find root in 200 iterations of Newton-Raphson")
-}
-
-// approximate the jacobian of a system f(x_1, x_2) = [f_1(x_1, x_2), f_2(x_1, x_2)] at x
-function jac(f, x, h = 1e-8) {
-	// compute finite difference expressions
-	// du is a column vector that contains the x_1 differential for f_1 and f_2
-	// dv is the same but for x_2
-	let du = new matrix(2, 1, matrix.sMult(matrix.add(f([x.data[0] + h, x.data[1]]), matrix.sMult(f([x.data[0] - h, x.data[1]]), -1)), 1 / (2 * h)).data);
-	let dv = new matrix(2, 1, matrix.sMult(matrix.add(f([x.data[0], x.data[1] + h]), matrix.sMult(f([x.data[0], x.data[1] - h]), -1)), 1 / (2 * h)).data);
-
-	return new matrix(2, 2, [du.data[0], dv.data[0], du.data[1], dv.data[1]])
-}
-
 // defines torus surface
 function F(theta, phi) {
 	let x = matrix.eWMult(matrix.cos(theta), (matrix.sAdd(matrix.cos(phi), 2)));
