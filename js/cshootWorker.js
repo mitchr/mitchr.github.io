@@ -22,7 +22,7 @@ function cShoot(tSpan, BC, p) {
 		}
 
 		let [t, w] = rkf45(geod, tSpan, [thetaAlpha, u.data[0], phiAlpha, u.data[1]], p, 0.5);
-		return new matrix([w.get(w.n - 1, 0) - thetaBeta, w.get(w.n - 1, 2) - phiBeta]);
+		return new matrix([w.get(w.n - 1, 0) - thetaBeta, w.get(w.n - 1, 2) - phiBeta]).transpose();
 	}
 
 	let c = newtonSys(residual, new matrix([thetaPrime, phiPrime]).transpose());

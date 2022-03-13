@@ -133,7 +133,7 @@ function bckwdEuler(f, t0, tf, y0, p = [], h = 0.25) {
 
 // Newton's method of finding solution set of simultaneous
 // f = function handle returning [f1;f2;...;fn]
-// u = starting solution vector [u1;u2]
+// u = initial guess (column vector) [u1;u2]
 function newtonSys(f, u, TOL = 1e-2) {
 	for (let i = 0; i < 200; i++) {
 		let J = jac(f, u);
