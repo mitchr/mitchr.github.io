@@ -33,8 +33,7 @@ class matrix {
 				this.data = [];
 			}
 		} else {
-			console.error("cannot create empty matrix object");
-			return NaN;
+			throw new Error("cannot create empty matrix object");
 		}
 	}
 
@@ -72,8 +71,7 @@ class matrix {
 	// return this.data(r, :)
 	row(r) {
 		if (r >= this.n) {
-			console.error("no row " + r);
-			return NaN;
+			throw new Error("no row " + r);
 		}
 		let row = [];
 		for (let i = 0; i < this.m; i++) {
@@ -89,8 +87,7 @@ class matrix {
 	appendRow(r) {
 		// this and r should have the same number of columns
 		if (this.m != r.m) {
-			console.error("cannot append row, dimension error");
-			return;
+			throw new Error("cannot append row, dimension error");
 		}
 
 		// append elements of r to this.data
@@ -101,13 +98,11 @@ class matrix {
 	// replace row r with the data in d
 	replaceRow(r, d) {
 		if (r >= this.n) {
-			console.error("cannot replacerow, no row " + r);
-			return;
+			throw new Error("cannot replacerow, no row " + r);
 		}
 		// this and d should have the same number of columns
 		if (this.m != d.m) {
-			console.error("cannot replaceRow, dimension error");
-			return;
+			throw new Error("cannot replaceRow, dimension error");
 		}
 
 		for (let i = 0; i < this.m; i++) {
@@ -131,7 +126,7 @@ class matrix {
 
 	appendCol(c) {
 		if (this.n != c.n) {
-			console.error("cannot append column, dimension error");
+			throw new Error("cannot append column, dimension error");
 		}
 
 		let writePtr = this.m;
@@ -147,7 +142,7 @@ class matrix {
 
 	replaceCol(c, d) {
 		if (this.n != d.n) {
-			console.error("cannot replaceCol, dimension error");
+			throw new Error("cannot replaceCol, dimension error");
 		}
 
 		for (let i = 0; i < this.n; i++) {
@@ -236,8 +231,7 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot add matrices of differing dimension");
-				return NaN;
+				throw new Error("cannot add matrices of differing dimension");
 			}
 			S.data = S.data.map((e, j) => e + A[i].data[j]);
 		}
@@ -248,8 +242,7 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot add matrices of differing dimension");
-				return NaN;
+				throw new Error("cannot add matrices of differing dimension");
 			}
 			S.data = S.data.map((e, j) => e - A[i].data[j]);
 		}
@@ -275,8 +268,7 @@ class matrix {
 		let S = A[0].clone();
 		for (let i = 1; i < A.length; i++) {
 			if (A[i].n != S.n && A[i].m != S.m) {
-				console.error("cannot element-wise multiply matrices of differing dimension");
-				return NaN;
+				throw new Error("cannot element-wise multiply matrices of differing dimension");
 			}
 			S.data = S.data.map((e, j) => e * A[i].data[j]);
 		}
