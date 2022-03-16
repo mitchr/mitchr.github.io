@@ -2,6 +2,8 @@
 layout: post
 title: "Geodesics Boogaloo"
 date: 2020-12-07
+description: >-
+ A new approach to solving the geodesic BVP on a torus.
 
 katex: true
 scripts:

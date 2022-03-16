@@ -2,6 +2,8 @@
 layout: post
 title: "A Terrible Way to Build Coefficient Matrices for Laplacian Finite Differences"
 date: 2020-08-25
+description: >-
+ An inelegant way to construct the laplacian finite different matrix on a rectangular grid.
 
 katex: true
 ---

@@ -2,6 +2,7 @@
 layout: landing
 title: Mitchell Riley's Blog
 permalink: /
+description: A blog about programming and numerical analysis
 ---
 
 <div class="list-group list-group-flush">

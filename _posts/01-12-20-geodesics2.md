@@ -2,6 +2,8 @@
 layout: post
 title: "Solving BVP Associated with Toroidal Geodesics"
 date: 2020-01-12
+description: >-
+ Using the shooting method to solve a tricky boundary value problem.
 
 katex: true
 ---

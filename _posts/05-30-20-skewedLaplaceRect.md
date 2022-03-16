@@ -2,6 +2,8 @@
 layout: post
 title: "Skewed 5-Point Stencil for Laplace Equation on a Rectangular Boundary"
 date: 2020-05-30
+description:
+ Constructing the skewed laplacian finite different matrix on a rectangular grid.
 
 katex: true
 ---

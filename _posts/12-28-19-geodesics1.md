@@ -2,6 +2,8 @@
 layout: post
 title: "Deriving the Geodesics of a Torus"
 date: 2019-12-28
+description: >-
+ Deriving the system of ordinary differential equations that describe the geodesics of a torus.
 
 katex: true
 scripts:

@@ -2,6 +2,8 @@
 layout: post
 title: "Applying the Composite Trapezoidal Rule to Fredholm Integral Equations of the Second Kind"
 date: 2019-07-01
+description: >-
+ Solving Fredholm integral equations of the second kind using the composite trapezoidal rule.
 
 katex: true
 ---

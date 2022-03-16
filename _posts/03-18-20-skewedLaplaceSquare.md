@@ -2,6 +2,8 @@
 layout: post
 title: "Deriving the 5-Point Skewed Stencil Equation for Finite Difference Approximation of the Laplacian"
 date: 2020-03-18
+description: >-
+  Deriving the skewed laplacian finite different equation on a square grid.
 
 katex: true
 ---
