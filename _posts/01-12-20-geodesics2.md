@@ -105,7 +105,7 @@ So how does this algorithm work? To start, we use RK45 with initial conditions $
 
 $$x=\begin{bmatrix}u_1\\u_2\end{bmatrix} \quad \text{and} \quad F(x)=\begin{bmatrix}g_1(u_1, u_2) - \beta_0\\ g_2(u_1, u_2) - \beta_1\end{bmatrix}.$$
 
-We then solve $F(x)=0$ using Newton-Raphson, which gives us approximate values $z_2(a)$ and $z_4(a)$. The Newton-Raphson method takes care of the shooting part of the algorithm, because if our initial guess for $u_1,u_2$ did not produce an approximation within an acceptable tolerance, it will choose a new $u_1',u_2'$ using the Jacobian of $F(x)$, use that as the new input for RK45, get new approximations for $g_1'(u_1', u_2'),g_2'(u_1',u_2')$, and then try to find the root for that. The MATLAB code is located in [this gist](https://gist.github.com/mitchr/3f1e62e6439333bd65e05b6ddb3b1336). There's also more details about solving this style of ODE in Chapter 5 of _Boundary Value Problems for Engineers with MATLAB Solutions_ <sup><a href="#fn1" id="ref1">1</a></sup> by Keskin.
+We then solve $F(x)=0$ using Newton-Raphson, which gives us approximate values $z_2(a)$ and $z_4(a)$. The Newton-Raphson method takes care of the shooting part of the algorithm, because if our initial guess for $u_1,u_2$ did not produce an approximation within an acceptable tolerance, it will choose a new $u_1',u_2'$ using the Jacobian of $F(x)$, use that as the new input for RK45, get new approximations for $g_1'(u_1', u_2'),g_2'(u_1',u_2')$, and then try to find the root for that. The MATLAB code is located in [this gist](https://gist.github.com/mitchr/3f1e62e6439333bd65e05b6ddb3b1336). There's also more details about solving this style of ODE in Chapter 5 of _Boundary Value Problems for Engineers with MATLAB Solutions_[^1] by Keskin.
 
 
 Let's look at some examples. We want to find the geodesic between points $(0,0)$ and $(0,\pi)$. I have assumed that $r=1$ and $R=2$, and also that $a=0,b=1$. This assumption of $t\in[0,1]$ isn't actually based on any intuition, which comes back to bite us later. For now, let's just assume that this is a sufficient enough span for $t$.
@@ -190,4 +190,4 @@ I also found that $[0,4.5]$ worked, so there must be some tolerance in the choic
 3. Initial guess using secant method is not accurate enough (although this is more of a problem with the fragility of N-R). It may be better to employ Newton's method over the secant method here for a more accurate guess.
 
 ---
-<sup id="fn1">1. Keskin. _Boundary Value Problems for Engineers with MATLAB Solutions_. Springer International Publishing, 2019.<a href="#ref1">↩</a></sup>
+[^1]: Keskin. _Boundary Value Problems for Engineers with MATLAB Solutions_. Springer International Publishing, 2019.

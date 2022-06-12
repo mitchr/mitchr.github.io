@@ -68,7 +68,7 @@ f(x_n)
 
 where $I_{n+1}$ is the identity matrix of size $n+1$.
 
-Let's try this on an example problem. Let $u(x) = e^x-1+\int_{0}^{1}tu(t)dt$ where $f(x) = e^x-1$ and $K(x,t)=t$. The exact solution to this equation is $u(x)=e^x$<sup><a href="#fn1" id="ref1">1</a></sup>. Let's use $n=4$ intervals with a step-size of $h=\frac{1}{4}$. Our set of nodes will then be $\{ 0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1 \}$. The matrix equation is
+Let's try this on an example problem. Let $u(x) = e^x-1+\int_{0}^{1}tu(t)dt$ where $f(x) = e^x-1$ and $K(x,t)=t$. The exact solution to this equation is $u(x)=e^x$[^1]. Let's use $n=4$ intervals with a step-size of $h=\frac{1}{4}$. Our set of nodes will then be $\{ 0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1 \}$. The matrix equation is
 
 $$
 \begin{pmatrix}I_5 -
@@ -117,4 +117,4 @@ It looks okay. We can see that there is some error when we only use $4$ interval
 The error is much smaller, which should make sense because the composite trapezoidal rule has error of order $O(h^3)$. So when we double our steps-size, our error is $\frac{1}{8}$ed.
 
 ---
-<sup id="fn1">1. Avazzadeh, Z., et al. “Numerical Solution of Fredholm Integral Equations of the Second Kind by Using Integral Mean Value Theorem.” Applied Mathematical Modelling, vol. 35, no. 5, May 2011, pp. 2374–2383.<a href="#ref1">↩</a></sup>
+[^1]: Avazzadeh, Z., et al. “Numerical Solution of Fredholm Integral Equations of the Second Kind by Using Integral Mean Value Theorem.” Applied Mathematical Modelling, vol. 35, no. 5, May 2011, pp. 2374–2383.

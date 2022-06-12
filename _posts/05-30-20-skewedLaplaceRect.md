@@ -87,27 +87,10 @@ $$
 
 #### Benefits and Drawbacks
 
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>Pros</th>
-			<th>Cons</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<span class="list-group-item">Incorporates more information from corner nodes, which can be useful for atypical boundary shapes or for extrapolating further information beyond the scope of the boundary <sup><a href="#fn1" id="ref1">1</a></sup>.</span>
-			</td>
-			<td>
-				<div class="list-group">
-					<span class="list-group-item">Sensitive to BCs that are discontinuous on their domain (ex., suppose the BC has a discontinuity at $(0,0)$, then the rotated stencil will try to incorporate this information whereas the standard stencil can gloss over it).</span>
-					<span class="list-group-item">Despite havivng the same order of accuracy as the standard stencil, $O(h^2)$, the rotated stencil gives slightly less accurate results because nodes are spaced farther apart and therefore have less information about their neighbors $\left(\sqrt{h^2+k^2}\right)$ versus just simply $h$ or $k$) <sup><a href="#fn1" id="ref1">1</a></sup>.</span>
-				</div>
-			</td>
-		</tr>
-	</tbody>
-</table>
+| Pros | Cons |
+| ---- | ---- |
+| Incorporates more information from corner nodes, which can be useful for atypical boundary shapes or for extrapolating further information beyond the scope of the boundary[^1] | Sensitive to BCs that are discontinuous on their domain (ex., suppose the BC has a discontinuity at $(0,0)$, then the rotated stencil will try to incorporate this information whereas the standard stencil can gloss over it) |
+| &nbsp; | Despite havivng the same order of accuracy as the standard stencil, $O(h^2)$, the rotated stencil gives slightly less accurate results because nodes are spaced farther apart and therefore have less information about their neighbors ($\left(\sqrt{h^2+k^2}\right)$ versus just simply $h$ or $k$)[^1] |
 
 ---
-<sup id="fn1">1. Krishnamurti, T.N., et al. “An Introduction to Finite Differencing.” _An Introduction to Global Spectral Modeling_, 2nd ed., vol. 35, Springer, 2006, pp. 4–39. Atmospheric and Oceanographic Sciences Library.<a href="#ref1">↩</a></sup>
+[^1]: Krishnamurti, T.N., et al. “An Introduction to Finite Differencing.” _An Introduction to Global Spectral Modeling_, 2nd ed., vol. 35, Springer, 2006, pp. 4–39. Atmospheric and Oceanographic Sciences Library.

@@ -66,7 +66,7 @@ $$
 \end{aligned}
 $$
 
-which is not obviously simple. The algebra needed to arrive at a useful simplification may seem utterly annoying, but there are substitutions that can be made that make some of the algebra easier. If you want to read more about these substitutions, you should check out Chapter 8 on geodesics in _Elementary Differential Geometry_ <sup><a href="#fn1" id="ref1">1</a></sup> by Pressley. I'm going to assume that we've done all the necessary algebra and sweep all those calculations under the rug so we can move on.
+which is not obviously simple. The algebra needed to arrive at a useful simplification may seem utterly annoying, but there are substitutions that can be made that make some of the algebra easier. If you want to read more about these substitutions, you should check out Chapter 8 on geodesics in _Elementary Differential Geometry_[^1] by Pressley. I'm going to assume that we've done all the necessary algebra and sweep all those calculations under the rug so we can move on.
 
 The solutions to the above system are given by another system:
 
@@ -114,4 +114,4 @@ Keep in mind that because we are using a numerical solver, we have to specify th
 Now that we have these equations, we might now consider how to find the specific geodesic between two arbitrary points $p$ and $q$ on $\mathcal{T}$. What we have now is a way for us to start at any point, shoot off in any direction, and see what points we can reach. But if we want to reach a specific point, we would have to try all possible velocity vectors until we found one that brought us to where we wanted to go. This is actually a really interesting problem and my instinct tells me it involves more than just solving the coupled BVP, but I'm not sure. In [this MathOverflow post](https://mathoverflow.net/questions/222459/determining-geodesics-between-two-points-in-curved-space) the OP created a solver that would just keep testing random velocity vectors until it reached the correct final point, so who knows!
 
 ---
-<sup id="fn1">1. Pressley, Andrew. _Elementary Differential Geometry_. Springer, 2001.<a href="#ref1">↩</a></sup>
+[^1]: Pressley, Andrew. _Elementary Differential Geometry_. Springer, 2001.
