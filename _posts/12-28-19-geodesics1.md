@@ -7,7 +7,7 @@ description: >-
 
 katex: true
 scripts:
-- https://cdn.plot.ly/plotly-gl3d-2.1.0.min.js
+- https://cdn.plot.ly/plotly-gl3d-2.14.0.min.js
 - ../../../js/matrix.js
 - ../../../js/12-28-19.js
 ---

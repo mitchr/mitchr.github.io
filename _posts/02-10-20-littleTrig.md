@@ -7,7 +7,7 @@ description: >-
 
 katex: true
 scripts:
-- https://cdn.plot.ly/plotly-strict-2.1.0.min.js
+- https://cdn.plot.ly/plotly-strict-2.14.0.min.js
 - ../../../js/2-10-20.js
 ---
 
