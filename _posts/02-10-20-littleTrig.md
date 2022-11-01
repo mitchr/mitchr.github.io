@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Little Trigonometry Proof"
-date: 2020-01-12
+date: 2020-02-10
 description: >-
  Solving a little trigonometry problem that I saw on Reddit.
 
