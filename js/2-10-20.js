@@ -34,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			angularaxis: {
 				thetaunit: 'radians',
 			},
+			bgcolor: 'rgba(0,0,0,0)'
 		},
+		paper_bgcolor: 'rgba(0,0,0,0)',
 	}
 
 	let config = {

@@ -48,7 +48,10 @@ let defLayout = {
 		xaxis: { showspikes: false },
 		yaxis: { showspikes: false },
 		zaxis: { showspikes: false }
-	}
+	},
+
+	paper_bgcolor: 'rgba(0,0,0,0)',
+	plot_bgcolor: 'rgba(0,0,0,0)',
 };
 
 let defConfig = {
